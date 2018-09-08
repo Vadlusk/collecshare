@@ -25,4 +25,12 @@ describe('GET /api/v1/users/:id', () => {
         done();
       });
   });
+  it('should return 404 if user id does not exist', done => {
+    config.chai.request(config.app)
+      .get('/api/v1/users/999999')
+      .end((err, res) => {
+        res.should.have.status(404);
+        done();
+      });
+  });
 });
