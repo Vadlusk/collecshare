@@ -5,7 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./api/v1/users');
+var usersRouter = require('./routes/api/v1/users');
 
 var app = express();
 
