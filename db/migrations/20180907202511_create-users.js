@@ -4,7 +4,7 @@ exports.up = function(knex, Promise) {
     id SERIAL PRIMARY KEY NOT NULL,
     uid TEXT NOT NULL,
     username TEXT NOT NULL,
-    photo_url TEXT,
+    photo_url TEXT DEFAULT 'http://shec-labs.com/wp-content/themes/creativemag/images/default.png',
     location TEXT,
     bio TEXT
   )`);
