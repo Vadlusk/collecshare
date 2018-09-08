@@ -26,4 +26,5 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
       - run: createdb collecshare_test
+      - run: knex migrate:latest --env test
       - run: yarn test
