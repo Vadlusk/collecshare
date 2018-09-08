@@ -7,7 +7,7 @@ const index = (req, res, next) => {
 
 const show = (req, res, next) => {
   User.find(req.params.id)
-    .then(user => res.json(user.rows[0]));
+    .then(user => user.rows[0] ? res.json(user.rows[0]) : res.sendStatus(404));
 };
 
 module.exports = { index, show };
