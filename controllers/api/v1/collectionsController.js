@@ -1,5 +1,10 @@
 const Collection = require('../../../models/Collection');
 
+const create = (req, res, next) => {
+  Collection.create(req.params)
+    .then(collection => res.json(collection));
+};
+
 const index = (req, res, next) => {
   Collection.all()
     .then(collections => res.json(collections.rows));
@@ -10,4 +15,4 @@ const show = (req, res, next) => {
     .then(collection => collection.rows[0] ? res.json(collection.rows[0]) : res.sendStatus(404));
 };
 
-module.exports = { index, show };
+module.exports = { create, index, show };
