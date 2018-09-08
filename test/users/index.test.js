@@ -16,7 +16,9 @@ describe('GET /api/v1/users', () => {
         res.body[0].should.have.property('username');
         res.body[0].uid.should.equal('Jill');
         res.body[0].should.have.property('photo_url');
-        res.body[0].photo_url.should.equal('http://shec-labs.com/wp-content/themes/creativemag/images/default.png');
+        res.body[0].photo_url.should.equal(
+          'http://shec-labs.com/wp-content/themes/creativemag/images/default.png'
+        );
         res.body[0].should.have.property('location');
         res.body[0].location.should.equal('Denver, CO');
         res.body[0].should.have.property('bio');
