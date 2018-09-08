@@ -1,10 +1,10 @@
-var config = require('../../test_helper');
+var config = require('../test_helper');
 
 describe('POST /api/v1/users/:id/collections', () => {
   it('should create a collection', done => {
     config.chai.request(config.app)
-      .post('/api/v1/users/1/collections')
-      .send({category: 'comics'})
+      .post('/api/v1/collections')
+      .send({uid: 1, category: 'comics'})
       .end((err, res) => {
         res.should.have.status(201);
         res.should.be.json;
