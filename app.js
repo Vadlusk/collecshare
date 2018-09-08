@@ -3,6 +3,7 @@ var express = require('express');
 var logger = require('morgan');
 
 var usersRouter = require('./routes/api/v1/users');
+var collectionsRouter = require('./routes/api/v1/collections');
 
 var app = express();
 
@@ -11,6 +12,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.use('/api/v1/users', usersRouter);
+app.use('/api/v1/collections', collectionsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
