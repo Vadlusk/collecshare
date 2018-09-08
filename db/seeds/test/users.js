@@ -1,7 +1,8 @@
 
 exports.seed = function(knex, Promise) {
 
-  return knex.raw('TRUNCATE users RESTART IDENTITY CASCADE')
+  return knex.raw('TRUNCATE collections RESTART IDENTITY CASCADE')
+    .then(() => knex.raw('TRUNCATE users RESTART IDENTITY CASCADE'))
     .then(() => {
       return knex('users').insert([
         {id: 1, uid: '1', username: 'Jill', location: 'Denver, CO', bio: 'I\'m pretty cool.'},
@@ -25,5 +26,29 @@ exports.seed = function(knex, Promise) {
         {id: 19, uid: '19', username: 'John'},
         {id: 20, uid: '20', username: 'John'}
       ]);
-    });
+    })
+    .then(() => {
+      return knex('collections').insert([
+        {id: 1, user_id: 1, category: 'comics'},
+        {id: 2, user_id: 1, category: 'comics'},
+        {id: 3, user_id: 1, category: 'comics'},
+        {id: 4, user_id: 1, category: 'comics'},
+        {id: 5, user_id: 1, category: 'comics'},
+        {id: 6, user_id: 1, category: 'comics'},
+        {id: 7, user_id: 1, category: 'comics'},
+        {id: 8, user_id: 1, category: 'comics'},
+        {id: 9, user_id: 1, category: 'comics'},
+        {id: 10, user_id: 1, category: 'comics'},
+        {id: 11, user_id: 1, category: 'comics'},
+        {id: 12, user_id: 1, category: 'comics'},
+        {id: 13, user_id: 1, category: 'comics'},
+        {id: 14, user_id: 1, category: 'comics'},
+        {id: 15, user_id: 1, category: 'comics'},
+        {id: 16, user_id: 1, category: 'comics'},
+        {id: 17, user_id: 1, category: 'comics'},
+        {id: 18, user_id: 1, category: 'comics'},
+        {id: 19, user_id: 1, category: 'comics'},
+        {id: 20, user_id: 1, category: 'comics'}
+      ]);
+    })
 };
