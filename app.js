@@ -1,13 +1,15 @@
 var createError = require('http-errors');
-var express = require('express');
-var logger = require('morgan');
+var express     = require('express');
+var logger      = require('morgan');
+var cors        = require('cors');
 
-var usersRouter = require('./routes/api/v1/users');
+var usersRouter       = require('./routes/api/v1/users');
 var collectionsRouter = require('./routes/api/v1/collections');
 
 var app = express();
 
 app.use(logger('dev'));
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
