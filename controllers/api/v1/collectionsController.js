@@ -1,9 +1,8 @@
 const Collection = require('../../../models/Collection');
 
 const create = (req, res, next) => {
-  console.log(req.body)
   Collection.create(req.body)
-    .then(collection => res.json(collection));
+    .then(collection => res.status(201).json(collection.rows[0]));
 };
 
 const index = (req, res, next) => {
