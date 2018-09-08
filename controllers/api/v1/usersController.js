@@ -7,7 +7,7 @@ const index = (req, res, next) => {
 
 const show = (req, res, next) => {
   User.find(req.params.id)
-    .then(user => res.json(user));
+    .then(user => res.json(user.rows[0]));
 };
 
 module.exports = { index, show };
