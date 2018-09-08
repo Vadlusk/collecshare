@@ -29,5 +29,6 @@ jobs:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
+      - run: npm install -g knex
       - run: knex migrate:latest --env test
       - run: yarn test
