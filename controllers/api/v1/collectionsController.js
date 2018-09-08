@@ -7,7 +7,7 @@ const index = (req, res, next) => {
 
 const show = (req, res, next) => {
   Collection.find(req.params.id)
-    .then(collection => res.json(collection.rows[0]));
+    .then(collection => collection.rows[0] ? res.json(collection.rows[0]) : res.sendStatus(404));
 };
 
 module.exports = { index, show };
