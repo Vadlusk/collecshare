@@ -7,6 +7,10 @@ jobs:
           PGHOST: localhost
           PGUSER: root
       - image: circleci/postgres:9.6
+        environment:
+          POSTGRES_USER: root
+          POSTGRES_DB: collecshare_test
+          POSTGRES_PASSWORD: ""
 
     working_directory: ~/repo
 
@@ -25,5 +29,6 @@ jobs:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
-      - run: createdb collecshare_test
+      - run: sudo npm install -g knex
+      - run: knex migrate:latest --env test
       - run: yarn test
