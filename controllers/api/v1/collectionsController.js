@@ -5,4 +5,9 @@ const index = (req, res, next) => {
     .then(collections => res.json(collections.rows));
 };
 
-module.exports = { index };
+const show = (req, res, next) => {
+  Collection.find(req.params.id)
+    .then(collection => res.json(collection.rows[0]));
+};
+
+module.exports = { index, show };
