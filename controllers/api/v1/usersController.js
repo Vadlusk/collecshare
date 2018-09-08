@@ -10,4 +10,9 @@ const show = (req, res, next) => {
     .then(user => user.rows[0] ? res.json(user.rows[0]) : res.sendStatus(404));
 };
 
-module.exports = { index, show };
+const destroy = (req, res, next) => {
+  User.destroy(req.params.id)
+    .then(message => res.json(message));
+};
+
+module.exports = { index, show, destroy };
