@@ -1,6 +1,13 @@
 const database = require('../db/config');
 
 class Collection {
+  static create(info) {
+    return database.raw(
+      'INSERT INTO collections (user_id, category) VALUES (?, ?) RETURNING *',
+      [info.uid, info.category]
+    );
+  }
+
   static all() {
     return database.raw('SELECT * FROM collections');
   }
