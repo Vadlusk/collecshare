@@ -12,7 +12,12 @@ const show = (req, res, next) => {
 
 const destroy = (req, res, next) => {
   User.destroy(req.params.id)
-    .then(message => res.json(message));
+    .then(info => info.rowCount === 1 ? res.json(createMessage(req.params.id)) : res.sendStatus(404));
+};
+
+const createMessage = id => {
+  let message = { message: `Successfully deleted user ${id}` };
+  return message;
 };
 
 module.exports = { index, show, destroy };
