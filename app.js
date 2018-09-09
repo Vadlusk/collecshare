@@ -1,5 +1,6 @@
 var createError = require('http-errors');
 var express     = require('express');
+var path        = require('path');
 var logger      = require('morgan');
 var cors        = require('cors');
 
@@ -8,6 +9,9 @@ var collectionsRouter = require('./routes/api/v1/collections');
 
 var app = express();
 
+app.engine('pug', require('pug').__express)
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'pug');
 app.use(logger('dev'));
 app.use(cors());
 app.use(express.json());
