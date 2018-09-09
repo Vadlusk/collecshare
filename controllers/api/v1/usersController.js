@@ -1,7 +1,8 @@
 const User = require('../../../models/User');
 
 const create = (req, res, next) => {
-
+  User.create(req.body)
+    .then(user => res.status(201).json(user));
 };
 
 const index = (req, res, next) => {
