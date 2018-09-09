@@ -4,5 +4,6 @@ const usersController = require('../../../controllers/api/v1/usersController');
 
 router.get('/', usersController.index);
 router.get('/:id', usersController.show);
+router.delete('/:id', usersController.destroy);
 
 module.exports = router;
