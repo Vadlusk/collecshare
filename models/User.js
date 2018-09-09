@@ -1,6 +1,13 @@
 const database = require('../db/config');
 
 class User {
+  static create(info) {
+    return database.raw(
+      'INSERT INTO users (uid, username) VALUES (?, ?) RETURNING *',
+      [info.uid, info.username]
+    );
+  }
+
   static all() {
     return database.raw('SELECT * FROM users');
   }
