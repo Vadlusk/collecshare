@@ -26,23 +26,27 @@ To run the local server, type `yarn start`
 The following endpoints represent full CRUD functionality of users. They return either a user object or message that the action was successful.  
 User objects are returned in the following format:   
 ```
-{ "id": int,
+{
+  "id": int,
   "uid": string,
   "username": string,
   "photo_url": string,
   "location": string,
-  "bio": string }
+  "bio": string
+}
 ```
 
 `POST /api/v1/users`
 
 creates a user with the following paramaters:  
 ```
-{ "uid": int(required),
+{
+  "uid": int(required),
   "username": string(required),
   "photo_url": string(optional),
   "location": string(optional),
-  "bio": string(optional) }
+  "bio": string(optional)
+}
 ```
 
 `GET /api/v1/users`
@@ -66,17 +70,21 @@ deletes the user with that id number
 The following endpoints do the same things with collections.  
 Collection objects are returned thusly:   
 ```
-{ "id": int,
+{
+  "id": int,
   "user_id": int,
-  "category": string }
+  "category": string
+}
 ```
 
 `POST /api/v1/collections/`
 
 creates a collection with the following paramaters:  
 ```
-{ "user_id": int(required),
-  "category": string(required) }
+{
+  "user_id": int(required),
+  "category": string(required)
+}
 ```
 
 `GET /api/v1/collections`
