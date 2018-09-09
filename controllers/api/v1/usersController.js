@@ -1,5 +1,9 @@
 const User = require('../../../models/User');
 
+const create = (req, res, next) => {
+
+};
+
 const index = (req, res, next) => {
   User.all()
     .then(users => res.json(users.rows));
@@ -20,4 +24,4 @@ const createMessage = id => {
   return message;
 };
 
-module.exports = { index, show, destroy };
+module.exports = { create, index, show, destroy };
