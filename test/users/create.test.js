@@ -12,7 +12,7 @@ describe('POST /api/v1/users', () => {
         res.body.should.have.property('id');
         res.body.id.should.equal(21);
         res.body.should.have.property('uid');
-        res.body.user_id.should.equal(1);
+        res.body.uid.should.equal('1');
         res.body.should.have.property('username');
         res.body.should.have.property('photo_url');
         res.body.should.have.property('location');
