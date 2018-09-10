@@ -53,4 +53,29 @@ describe('POST /api/v1/users', () => {
       });
     });
   });
+  context('should not create a user without', () => {
+    it('anything', done => {
+      config.chai.request(config.app)
+      .post('/api/v1/users')
+      .end((err, res) => {
+        res.should.have.status(400);
+      });
+    });
+    it('uid', done => {
+      config.chai.request(config.app)
+      .post('/api/v1/users')
+      .send({uid: 4})
+      .end((err, res) => {
+        res.should.have.status(400);
+      });
+    });
+    it('username', done => {
+      config.chai.request(config.app)
+      .post('/api/v1/users')
+      .send({username: 'Bad User'})
+      .end((err, res) => {
+        res.should.have.status(400);
+      });
+    });
+  });
 });
