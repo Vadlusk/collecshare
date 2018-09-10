@@ -4,10 +4,10 @@ Manage, share, buy, sell or trade your valuables on a global scale.
 This is the backend api.  
 
 # Versions
-Node 10.9.4  
-Express 4.16.3  
-Mocha 5.2.0  
-Chai 4.1.4  
+Node `10.9.4`  
+Express `4.16.3`  
+Mocha `5.2.0`  
+Chai `4.1.4`  
 
 # Setup
 1. Clone or fork this repo.
