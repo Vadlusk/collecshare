@@ -3,8 +3,8 @@ const database = require('../db/config');
 class User {
   static create(info) {
     return database.raw(
-      'INSERT INTO users (uid, username) VALUES (?, ?) RETURNING *',
-      [info.uid, info.username]
+      'INSERT INTO users (uid, username, photo_url, location, bio) VALUES (?, ?, ?, ?, ?) RETURNING *',
+      [info.uid, info.username, info.photo_url, info.location, info.bio]
     );
   }
 
