@@ -59,6 +59,7 @@ describe('POST /api/v1/users', () => {
       .post('/api/v1/users')
       .end((err, res) => {
         res.should.have.status(400);
+        done();
       });
     });
     it('uid', done => {
@@ -67,6 +68,7 @@ describe('POST /api/v1/users', () => {
       .send({uid: 4})
       .end((err, res) => {
         res.should.have.status(400);
+        done();
       });
     });
     it('username', done => {
@@ -75,6 +77,7 @@ describe('POST /api/v1/users', () => {
       .send({username: 'Bad User'})
       .end((err, res) => {
         res.should.have.status(400);
+        done();
       });
     });
   });

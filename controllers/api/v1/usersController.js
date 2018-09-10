@@ -1,8 +1,12 @@
 const User = require('../../../models/User');
 
 const create = (req, res, next) => {
-  User.create(req.body)
+  if (!req.body.username || !req.body.uid) {
+    res.sendStatus(400);
+  } else {
+    User.create(req.body)
     .then(user => res.status(201).json(user.rows[0]));
+  }
 };
 
 const index = (req, res, next) => {
