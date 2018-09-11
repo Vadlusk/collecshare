@@ -12,7 +12,7 @@ describe('POST /api/v1/collections', () => {
         res.body.should.have.property('id');
         res.body.id.should.equal(21);
         res.body.should.have.property('uid');
-        res.body.user_id.should.equal('1');
+        res.body.uid.should.equal('1');
         res.body.should.have.property('category');
         res.body.category.should.equal('comics');
         done();

@@ -24,10 +24,9 @@ To run the local server, type `yarn start`
 
 ## Users
 The following endpoints represent full CRUD functionality of users. They return either a user object or message that the action was successful.  
-User objects are returned in the following format:   
+User objects are always returned in the following format:   
 ```
 {
-  "id": int,
   "uid": string,
   "username": string,
   "photo_url": string,
@@ -63,7 +62,7 @@ deletes the user with that uid number
 
 ## Collections
 The following endpoints do the same things with collections.  
-Collection objects are returned thusly:   
+Collection objects are always returned thusly:   
 ```
 {
   "id": int,
@@ -77,7 +76,7 @@ Collection objects are returned thusly:
 creates a collection with the following parameters:  
 ```
 {
-  "uid": stringd(required),
+  "uid": string(required),
   "category": string(required)
 }
 ```

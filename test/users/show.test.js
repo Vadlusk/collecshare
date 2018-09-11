@@ -1,6 +1,6 @@
 var config = require('../test_helper');
 
-describe('GET /api/v1/users/:id', () => {
+describe('GET /api/v1/users/:uid', () => {
   it('should return the user with that uid', done => {
     config.chai.request(config.app)
       .get('/api/v1/users/1')
@@ -8,8 +8,6 @@ describe('GET /api/v1/users/:id', () => {
         res.should.have.status(200);
         res.should.be.json;
         res.body.should.be.a('object');
-        res.body.should.have.property('id');
-        res.body.id.should.equal(1);
         res.body.should.have.property('uid');
         res.body.uid.should.equal('1');
         res.body.should.have.property('username');

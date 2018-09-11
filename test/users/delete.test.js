@@ -1,6 +1,6 @@
 var config = require('../test_helper');
 
-describe('DELETE /api/v1/users/:id', () => {
+describe('DELETE /api/v1/users/:uid', () => {
   it('should delete a user', done => {
     config.chai.request(config.app)
       .delete('/api/v1/users/1')

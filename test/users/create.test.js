@@ -10,8 +10,6 @@ describe('POST /api/v1/users', () => {
         res.should.have.status(201);
         res.should.be.json;
         res.body.should.be.a('object');
-        res.body.should.have.property('id');
-        res.body.id.should.equal(21);
         res.body.should.have.property('uid');
         res.body.uid.should.equal('22');
         res.body.should.have.property('username');
@@ -37,8 +35,6 @@ describe('POST /api/v1/users', () => {
         res.should.have.status(201);
         res.should.be.json;
         res.body.should.be.a('object');
-        res.body.should.have.property('id');
-        res.body.id.should.equal(21);
         res.body.should.have.property('uid');
         res.body.uid.should.equal('22');
         res.body.should.have.property('username');

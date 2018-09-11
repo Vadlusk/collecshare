@@ -11,8 +11,8 @@ describe('GET /api/v1/collections', () => {
         res.body.length.should.equal(20);
         res.body[0].should.have.property('id');
         res.body[0].id.should.equal(1);
-        res.body[0].should.have.property('user_id');
-        res.body[0].user_id.should.equal(1);
+        res.body[0].should.have.property('uid');
+        res.body[0].uid.should.equal('1');
         res.body[0].should.have.property('category');
         res.body[0].category.should.equal('comics');
         done();

@@ -29,26 +29,26 @@ exports.seed = function(knex, Promise) {
     })
     .then(() => {
       return knex('collections').insert([
-        { user_id: 1, category: 'comics' },
-        { user_id: 1, category: 'comics' },
-        { user_id: 1, category: 'comics' },
-        { user_id: 1, category: 'comics' },
-        { user_id: 1, category: 'comics' },
-        { user_id: 1, category: 'comics' },
-        { user_id: 1, category: 'comics' },
-        { user_id: 1, category: 'comics' },
-        { user_id: 1, category: 'comics' },
-        { user_id: 1, category: 'comics' },
-        { user_id: 1, category: 'comics' },
-        { user_id: 1, category: 'comics' },
-        { user_id: 1, category: 'comics' },
-        { user_id: 1, category: 'comics' },
-        { user_id: 1, category: 'comics' },
-        { user_id: 1, category: 'comics' },
-        { user_id: 1, category: 'comics' },
-        { user_id: 1, category: 'comics' },
-        { user_id: 1, category: 'comics' },
-        { user_id: 1, category: 'comics' }
+        { uid: '1', category: 'comics' },
+        { uid: '1', category: 'comics' },
+        { uid: '1', category: 'comics' },
+        { uid: '1', category: 'comics' },
+        { uid: '1', category: 'comics' },
+        { uid: '1', category: 'comics' },
+        { uid: '1', category: 'comics' },
+        { uid: '1', category: 'comics' },
+        { uid: '1', category: 'comics' },
+        { uid: '1', category: 'comics' },
+        { uid: '1', category: 'comics' },
+        { uid: '1', category: 'comics' },
+        { uid: '1', category: 'comics' },
+        { uid: '1', category: 'comics' },
+        { uid: '1', category: 'comics' },
+        { uid: '1', category: 'comics' },
+        { uid: '1', category: 'comics' },
+        { uid: '1', category: 'comics' },
+        { uid: '1', category: 'comics' },
+        { uid: '1', category: 'comics' }
       ]);
     })
 };
