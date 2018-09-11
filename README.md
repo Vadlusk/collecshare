@@ -24,10 +24,9 @@ To run the local server, type `yarn start`
 
 ## Users
 The following endpoints represent full CRUD functionality of users. They return either a user object or message that the action was successful.  
-User objects are returned in the following format:   
+User objects are always returned in the following format:   
 ```
 {
-  "id": int,
   "uid": string,
   "username": string,
   "photo_url": string,
@@ -38,10 +37,10 @@ User objects are returned in the following format:
 
 `POST /api/v1/users`
 
-creates a user with the following paramaters:  
+creates a user with the following parameters:  
 ```
 {
-  "uid": int(required),
+  "uid": string(required),
   "username": string(required),
   "photo_url": string(optional),
   "location": string(optional),
@@ -57,32 +56,27 @@ returns a list of all users in the database
 
 returns the user with that uid number
 
-`PUT /api/v1/users/:uid`
-
-edits an existing user with same parameters as above.   
-no fields are required.
-
 `DELETE /api/v1/users/:uid`
 
 deletes the user with that uid number
 
 ## Collections
 The following endpoints do the same things with collections.  
-Collection objects are returned thusly:   
+Collection objects are always returned thusly:   
 ```
 {
   "id": int,
-  "user_id": int,
+  "uid": string,
   "category": string
 }
 ```
 
 `POST /api/v1/collections/`
 
-creates a collection with the following paramaters:  
+creates a collection with the following parameters:  
 ```
 {
-  "user_id": int(required),
+  "uid": string(required),
   "category": string(required)
 }
 ```
@@ -94,12 +88,3 @@ returns all the collections in the database
 `GET /api/v1/collections/:id`
 
 returns the collection with that id number
-
-`PUT /api/v1/users/:id`
-
-edits an existing collection with same parameters as above.   
-no fields are required.
-
-`DELETE /api/v1/collections/:id`
-
-deletes the collection with that id number
