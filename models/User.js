@@ -15,11 +15,11 @@ class User {
     return database.raw('SELECT * FROM users');
   }
 
-  static find(id) {
+  static find(uid) {
     return database.raw('SELECT * FROM users WHERE uid = ?', [uid]);
   }
 
-  static destroy(id) {
+  static destroy(uid) {
     return database.raw('DELETE FROM users WHERE uid = ?', [uid]);
   }
 }

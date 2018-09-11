@@ -4,7 +4,7 @@ const usersController = require('../../../controllers/api/v1/usersController');
 
 router.post('/', usersController.create);
 router.get('/', usersController.index);
-router.get('/:id', usersController.show);
-router.delete('/:id', usersController.destroy);
+router.get('/:uid', usersController.show);
+router.delete('/:uid', usersController.destroy);
 
 module.exports = router;
