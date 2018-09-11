@@ -5,12 +5,12 @@ describe('PUT /api/v1/users/:uid', () => {
     it('one valid parameter', done => {
       config.chai.request(config.app)
         .put('/api/v1/users/1')
-        .send({uid: 2})
+        .send({uid: '56'})
         .end((err, res) => {
           res.should.have.status(200);
           res.should.be.json;
           res.body.should.have.property('uid');
-          res.body.uid.should.equal('2');
+          res.body.uid.should.equal('56');
           res.body.should.have.property('username');
           res.body.should.have.property('photo_url');
           res.body.should.have.property('location');
@@ -22,7 +22,7 @@ describe('PUT /api/v1/users/:uid', () => {
       config.chai.request(config.app)
         .put('/api/v1/users/1')
         .send({
-          uid: '3',
+          uid: '6689',
           username: 'Jim',
           photo_url: 'Url',
           location: 'New Dehli',
@@ -32,7 +32,7 @@ describe('PUT /api/v1/users/:uid', () => {
           res.should.have.status(200);
           res.should.be.json;
           res.body.should.have.property('uid');
-          res.body.uid.should.equal('3');
+          res.body.uid.should.equal('6689');
           res.body.should.have.property('username');
           res.body.username.should.equal('Jim');
           res.body.should.have.property('photo_url');

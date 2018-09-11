@@ -19,6 +19,11 @@ class User {
     return database.raw('SELECT * FROM users WHERE uid = ?', [uid]);
   }
 
+  static update(info, uid) {
+    let set = `${Object.keys(info)[0]} = ${Object.values(info)[0]}`;
+    return database.raw('UPDATE users SET ' + set + ' WHERE uid = ?', [uid]);
+  }
+
   static destroy(uid) {
     return database.raw('DELETE FROM users WHERE uid = ?', [uid]);
   }
