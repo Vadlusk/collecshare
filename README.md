@@ -15,7 +15,6 @@ Chai `4.1.4`
 3. `npm i`
 4. `createdb collecshare_dev && createdb collecshare_test`
 5. `knex migrate:latest && knex migrate:latest --env test`
-6. `knex seed:run --env test`
 
 To run the test suite, type `yarn test`   
 To run the local server, type `yarn start`
