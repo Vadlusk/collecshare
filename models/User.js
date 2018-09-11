@@ -21,7 +21,7 @@ class User {
 
   static update(info, uid) {
     let set = `${Object.keys(info)[0]} = ${Object.values(info)[0]}`;
-    return database.raw('UPDATE users SET ' + set + ' WHERE uid = ?', [uid]);
+    return database.raw('UPDATE users SET ' + set + ' WHERE uid = ? RETURNING *', [uid]);
   }
 
   static destroy(uid) {

@@ -21,7 +21,7 @@ const show = (req, res, next) => {
 
 const update = (req, res, next) => {
   User.update(req.body, req.params.uid)
-    .then(user => res.json(user));
+    .then(user => res.json(user.rows[0]));
 };
 
 const destroy = (req, res, next) => {
