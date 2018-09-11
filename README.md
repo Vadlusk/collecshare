@@ -55,6 +55,12 @@ returns a list of all users in the database
 
 returns the user with that uid number
 
+`PUT /api/v1/users/:uid`
+
+updates the specified user.   
+use the same parameters for updating and creating.   
+the only difference is that no fields are required for updating. 
+
 `DELETE /api/v1/users/:uid`
 
 deletes the user with that uid number
