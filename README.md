@@ -38,10 +38,10 @@ User objects are returned in the following format:
 
 `POST /api/v1/users`
 
-creates a user with the following paramaters:  
+creates a user with the following parameters:  
 ```
 {
-  "uid": int(required),
+  "uid": string(required),
   "username": string(required),
   "photo_url": string(optional),
   "location": string(optional),
@@ -72,17 +72,17 @@ Collection objects are returned thusly:
 ```
 {
   "id": int,
-  "user_id": int,
+  "uid": string,
   "category": string
 }
 ```
 
 `POST /api/v1/collections/`
 
-creates a collection with the following paramaters:  
+creates a collection with the following parameters:  
 ```
 {
-  "user_id": int(required),
+  "uid": stringd(required),
   "category": string(required)
 }
 ```
@@ -95,7 +95,7 @@ returns all the collections in the database
 
 returns the collection with that id number
 
-`PUT /api/v1/users/:id`
+`PUT /api/v1/collections/:id`
 
 edits an existing collection with same parameters as above.   
 no fields are required.
