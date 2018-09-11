@@ -53,18 +53,18 @@ creates a user with the following paramaters:
 
 returns a list of all users in the database
 
-`GET /api/v1/users/:id`
+`GET /api/v1/users/:uid`
 
-returns the user with that id number
+returns the user with that uid number
 
-`PUT /api/v1/users/:id`
+`PUT /api/v1/users/:uid`
 
 edits an existing user with same parameters as above.   
 no fields are required.
 
-`DELETE /api/v1/users/:id`
+`DELETE /api/v1/users/:uid`
 
-deletes the user with that id number
+deletes the user with that uid number
 
 ## Collections
 The following endpoints do the same things with collections.  
