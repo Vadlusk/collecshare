@@ -1,7 +1,7 @@
 var config = require('../test_helper');
 
 describe('GET /api/v1/users/:id', () => {
-  it('should return the user with that id', done => {
+  it('should return the user with that uid', done => {
     config.chai.request(config.app)
       .get('/api/v1/users/1')
       .end((err, res) => {

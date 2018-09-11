@@ -5,7 +5,7 @@ describe('POST /api/v1/users', () => {
     it('only uid and name', done => {
       config.chai.request(config.app)
       .post('/api/v1/users')
-      .send({uid: 1, username: 'New user'})
+      .send({uid: '22', username: 'New user'})
       .end((err, res) => {
         res.should.have.status(201);
         res.should.be.json;
@@ -13,7 +13,7 @@ describe('POST /api/v1/users', () => {
         res.body.should.have.property('id');
         res.body.id.should.equal(21);
         res.body.should.have.property('uid');
-        res.body.uid.should.equal('1');
+        res.body.uid.should.equal('22');
         res.body.should.have.property('username');
         res.body.username.should.equal('New user');
         res.body.should.have.property('photo_url');
@@ -27,7 +27,7 @@ describe('POST /api/v1/users', () => {
       config.chai.request(config.app)
       .post('/api/v1/users')
       .send({
-        uid: 1,
+        uid: '22',
         username: 'New user',
         photo_url: 'New Url',
         location: 'Honolulu, HI',
@@ -40,7 +40,7 @@ describe('POST /api/v1/users', () => {
         res.body.should.have.property('id');
         res.body.id.should.equal(21);
         res.body.should.have.property('uid');
-        res.body.uid.should.equal('1');
+        res.body.uid.should.equal('22');
         res.body.should.have.property('username');
         res.body.username.should.equal('New user');
         res.body.should.have.property('photo_url');
@@ -65,7 +65,7 @@ describe('POST /api/v1/users', () => {
     it('uid', done => {
       config.chai.request(config.app)
       .post('/api/v1/users')
-      .send({uid: 4})
+      .send({uid: '22'})
       .end((err, res) => {
         res.should.have.status(400);
         done();
