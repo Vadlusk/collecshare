@@ -57,11 +57,6 @@ returns a list of all users in the database
 
 returns the user with that uid number
 
-`PUT /api/v1/users/:uid`
-
-edits an existing user with same parameters as above.   
-no fields are required.
-
 `DELETE /api/v1/users/:uid`
 
 deletes the user with that uid number
@@ -94,12 +89,3 @@ returns all the collections in the database
 `GET /api/v1/collections/:id`
 
 returns the collection with that id number
-
-`PUT /api/v1/collections/:id`
-
-edits an existing collection with same parameters as above.   
-no fields are required.
-
-`DELETE /api/v1/collections/:id`
-
-deletes the collection with that id number
