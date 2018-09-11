@@ -15,13 +15,13 @@ const index = (req, res, next) => {
 };
 
 const show = (req, res, next) => {
-  User.find(req.params.id)
+  User.find(req.params.uid)
     .then(user => user.rows[0] ? res.json(user.rows[0]) : res.sendStatus(404));
 };
 
 const destroy = (req, res, next) => {
-  User.destroy(req.params.id)
-    .then(info => info.rowCount === 1 ? res.json(createMessage(req.params.id)) : res.sendStatus(404));
+  User.destroy(req.params.uid)
+    .then(info => info.rowCount === 1 ? res.json(createMessage(req.params.uid)) : res.sendStatus(404));
 };
 
 const createMessage = id => {

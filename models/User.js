@@ -15,12 +15,12 @@ class User {
     return database.raw('SELECT * FROM users');
   }
 
-  static find(id) {
-    return database.raw('SELECT * FROM users WHERE id = ?', [id]);
+  static find(uid) {
+    return database.raw('SELECT * FROM users WHERE uid = ?', [uid]);
   }
 
-  static destroy(id) {
-    return database.raw('DELETE FROM users WHERE id = ?', [id]);
+  static destroy(uid) {
+    return database.raw('DELETE FROM users WHERE uid = ?', [uid]);
   }
 }
 
