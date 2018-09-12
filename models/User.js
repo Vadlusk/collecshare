@@ -18,15 +18,18 @@ class User {
   }
 
   static update(info, uid) {
-    const reducer = (result, val) => result + `${val[0]}='${val[1]}', `;
-    let set = Object.entries(info).reduce(reducer, '').slice(0, -2);
-    return database.raw('UPDATE users SET ' + set + ' WHERE uid = ? RETURNING *', [uid]);
+    return database.raw('UPDATE users SET ' + set(info) + ' WHERE uid = ? RETURNING *', [uid]);
   }
 
   static destroy(uid) {
     return database.raw('DELETE FROM users WHERE uid = ?', [uid]);
   }
 }
+
+let set = info => {
+  const reducer = (result, val) => result + `${val[0]}='${val[1]}', `;
+  return Object.entries(info).reduce(reducer, '').slice(0, -2);
+};
 
 const sanitizeInfo = info => {
   if (info.photo_url == undefined) info.photo_url = 'http://shec-labs.com/wp-content/themes/creativemag/images/default.png';
