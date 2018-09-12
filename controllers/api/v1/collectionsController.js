@@ -17,6 +17,11 @@ const show = (req, res, next) => {
       res.json(collection.rows[0]) : res.sendStatus(404));
 };
 
+const update = (req, res, next) => {
+  Collection.update(req.body, req.params.id)
+    .then(collection => res.json(collection));
+};
+
 const destroy = (req, res, next) => {
   Collection.destroy(req.params.id)
     .then(message => message.rowCount === 1 ?
@@ -24,4 +29,4 @@ const destroy = (req, res, next) => {
       res.sendStatus(404));
 };
 
-module.exports = { create, index, show, destroy };
+module.exports = { create, index, show, update, destroy };
