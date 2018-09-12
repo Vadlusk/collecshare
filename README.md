@@ -97,3 +97,7 @@ returns all the collections in the database
 `GET /api/v1/collections/:id`
 
 returns the collection with that id number
+
+`DELETE /api/v1/collections/:id`
+
+deletes the collection with that id number
