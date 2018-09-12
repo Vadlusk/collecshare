@@ -16,6 +16,11 @@ class Collection {
     return database.raw('SELECT * FROM collections WHERE id=?', [id]);
   }
 
+  static update(info, id) {
+    let query = 'UPDATE collections SET ' + helpers.set(info) + ' WHERE uid = ? RETURNING *'
+    return database.raw(query, [id]);
+  }
+
   static destroy(id) {
     return database.raw('DELETE FROM collections WHERE id=?', [id])
   }

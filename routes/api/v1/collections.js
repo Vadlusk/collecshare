@@ -5,6 +5,7 @@ const collectionsController = require('../../../controllers/api/v1/collectionsCo
 router.post('/', collectionsController.create);
 router.get('/', collectionsController.index);
 router.get('/:id', collectionsController.show);
+router.put('/:id', collectionsController.update);
 router.delete('/:id', collectionsController.destroy);
 
 module.exports = router;

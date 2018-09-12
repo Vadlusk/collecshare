@@ -6,7 +6,7 @@ const create = (req, res, next) => {
     res.sendStatus(400);
   } else {
     User.create(req.body)
-    .then(user => res.status(201).json(user.rows[0]));
+    .then(user => helpers.sendJSON(user, 201, res));
   }
 };
 
@@ -17,12 +17,12 @@ const index = (req, res, next) => {
 
 const show = (req, res, next) => {
   User.find(req.params.uid)
-    .then(user => user.rows[0] ? res.json(user.rows[0]) : res.sendStatus(404));
+    .then(user => helpers.sendJSON(user, 200, res));
 };
 
 const update = (req, res, next) => {
   User.update(req.body, req.params.uid)
-    .then(user => res.json(user.rows[0]));
+    .then(user => helpers.sendJSON(user, 200, res));
 };
 
 const destroy = (req, res, next) => {
@@ -31,10 +31,5 @@ const destroy = (req, res, next) => {
       res.json(helpers.createMessage(req.params.uid, 'user')) :
       res.sendStatus(404));
 };
-
-// const createMessage = (id, type) => {
-//   let message = { message: `Successfully deleted ${type} ${id}` };
-//   return message;
-// };
 
 module.exports = { create, index, show, update, destroy };

@@ -3,4 +3,10 @@ const createMessage = (id, type) => {
   return message;
 };
 
-module.exports = { createMessage }
+const sendJSON = (payload, status, res) => {
+  payload.rows[0] ?
+  res.status(status).json(payload.rows[0]) :
+  res.sendStatus(404);
+};
+
+module.exports = { createMessage, sendJSON }

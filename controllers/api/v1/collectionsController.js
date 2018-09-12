@@ -3,7 +3,7 @@ const helpers = require('../../helpers');
 
 const create = (req, res, next) => {
   Collection.create(req.body)
-    .then(collection => res.status(201).json(collection.rows[0]));
+    .then(collection => helpers.sendJSON(collection, 201, res));
 };
 
 const index = (req, res, next) => {
@@ -13,8 +13,12 @@ const index = (req, res, next) => {
 
 const show = (req, res, next) => {
   Collection.find(req.params.id)
-    .then(collection => collection.rows[0] ?
-      res.json(collection.rows[0]) : res.sendStatus(404));
+    .then(collection => helpers.sendJSON(collection, 200, res));
+};
+
+const update = (req, res, next) => {
+  Collection.update(req.body, req.params.id)
+    .then(collection => helpers.sendJSON(collection, 200, res));
 };
 
 const destroy = (req, res, next) => {
@@ -24,4 +28,4 @@ const destroy = (req, res, next) => {
       res.sendStatus(404));
 };
 
-module.exports = { create, index, show, destroy };
+module.exports = { create, index, show, update, destroy };
