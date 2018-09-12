@@ -41,4 +41,13 @@ describe('PUT /api/v1/collections/:uid', () => {
         });
     });
   });
+  it('should 404 if collection id does not exist', done => {
+    config.chai.request(config.app)
+      .put('/api/v1/collections/999999')
+      .send({title: 'Title'})
+      .end((err, res) => {
+        res.should.have.status(404);
+        done();
+      });
+  });
 });

@@ -45,4 +45,13 @@ describe('PUT /api/v1/users/:uid', () => {
         });
     });
   });
+  it('should 404 if uid does not exist', done => {
+    config.chai.request(config.app)
+      .put('/api/v1/users/999999')
+      .send({uid: '45'})
+      .end((err, res) => {
+        res.should.have.status(404);
+        done();
+      });
+  });
 });
