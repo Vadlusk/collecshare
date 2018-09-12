@@ -13,8 +13,7 @@ const index = (req, res, next) => {
 
 const show = (req, res, next) => {
   Collection.find(req.params.id)
-    .then(collection => collection.rows[0] ?
-      res.json(collection.rows[0]) : res.sendStatus(404));
+    .then(collection => sendJSON(collection, 200, res))
 };
 
 const update = (req, res, next) => {
@@ -27,6 +26,12 @@ const destroy = (req, res, next) => {
     .then(message => message.rowCount === 1 ?
       res.json(helpers.createMessage(req.params.id, 'collection')) :
       res.sendStatus(404));
+};
+
+const sendJSON = (payload, status, res) => {
+  payload.rows[0] ?
+  res.status(status).json(payload.rows[0]) :
+  res.sendStatus(404);
 };
 
 module.exports = { create, index, show, update, destroy };

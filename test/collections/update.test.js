@@ -1,6 +1,6 @@
 var config = require('../test_helper');
 
-describe('PUT /api/v1/collections/:uid', () => {
+describe('PUT /api/v1/collections/:id', () => {
   context('should edit a collection with', () => {
     it('one valid parameter', done => {
       config.chai.request(config.app)
