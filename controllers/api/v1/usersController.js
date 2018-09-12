@@ -6,7 +6,7 @@ const create = (req, res, next) => {
     res.sendStatus(400);
   } else {
     User.create(req.body)
-    .then(user => res.status(201).json(user.rows[0]));
+    .then(user => helpers.sendJSON(user, 201, res));
   }
 };
 
