@@ -59,7 +59,7 @@ returns the user with that uid number
 
 updates the specified user.   
 use the same parameters for updating and creating.   
-the only difference is that no fields are required for updating. 
+the only difference is that no fields are required for updating.
 
 `DELETE /api/v1/users/:uid`
 
@@ -72,7 +72,9 @@ Collection objects are always returned thusly:
 {
   "id": int,
   "uid": string,
-  "category": string
+  "category": string,
+  "title": string,
+  "description": string
 }
 ```
 
@@ -82,7 +84,9 @@ creates a collection with the following parameters:
 ```
 {
   "uid": string(required),
-  "category": string(required)
+  "category": string(required),
+  "title": string(required),
+  "description": string(optional)
 }
 ```
 
