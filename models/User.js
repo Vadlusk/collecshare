@@ -2,9 +2,7 @@ const database = require('../db/config');
 
 class User {
   static create(info) {
-    console.log(info.bio);
     sanitizeInfo(info);
-    console.log(info.bio);
     return database.raw(
       'INSERT INTO users (uid, username, photo_url, location, bio) VALUES (?, ?, ?, ?, ?) RETURNING *',
       [info.uid, info.username, info.photo_url, info.location, info.bio]
