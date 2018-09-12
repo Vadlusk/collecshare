@@ -20,7 +20,7 @@ const show = (req, res, next) => {
 const destroy = (req, res, next) => {
   Collection.destroy(req.params.id)
     .then(message => message.rowCount === 1 ?
-      res.json(helpers.createMessage(req.params.uid, 'collection')) :
+      res.json(helpers.createMessage(req.params.id, 'collection')) :
       res.sendStatus(404));
 };
 
