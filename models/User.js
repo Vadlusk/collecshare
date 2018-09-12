@@ -4,8 +4,8 @@ const helpers  = require('./helpers');
 class User {
   static create(info) {
     helpers.sanitizeInfo(info, 'user');
-    let q = 'INSERT INTO users (uid, username, photo_url, location, bio) VALUES (?, ?, ?, ?, ?) RETURNING *'
-    return database.raw(q, [info.uid, info.username, info.photo_url, info.location, info.bio]);
+    let q = 'INSERT INTO users (uid, username, avatar, location, bio) VALUES (?, ?, ?, ?, ?) RETURNING *'
+    return database.raw(q, [info.uid, info.username, info.avatar, info.location, info.bio]);
   }
 
   static all() {

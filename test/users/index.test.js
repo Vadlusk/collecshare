@@ -13,8 +13,8 @@ describe('GET /api/v1/users', () => {
         res.body[0].uid.should.equal('1');
         res.body[0].should.have.property('username');
         res.body[0].username.should.equal('Jill');
-        res.body[0].should.have.property('photo_url');
-        res.body[0].photo_url.should.equal(
+        res.body[0].should.have.property('avatar');
+        res.body[0].avatar.should.equal(
           'http://shec-labs.com/wp-content/themes/creativemag/images/default.png'
         );
         res.body[0].should.have.property('location');

@@ -14,20 +14,20 @@ describe('POST /api/v1/users', () => {
         res.body.uid.should.equal('22');
         res.body.should.have.property('username');
         res.body.username.should.equal('New user');
-        res.body.should.have.property('photo_url');
-        res.body.photo_url.should.equal('http://shec-labs.com/wp-content/themes/creativemag/images/default.png');
+        res.body.should.have.property('avatar');
+        res.body.avatar.should.equal('http://shec-labs.com/wp-content/themes/creativemag/images/default.png');
         res.body.should.have.property('location');
         res.body.should.have.property('bio');
         done();
       });
     });
-    it('uid, name, photo_url, location, and bio', done => {
+    it('uid, name, avatar, location, and bio', done => {
       config.chai.request(config.app)
       .post('/api/v1/users')
       .send({
         uid: '22',
         username: 'New user',
-        photo_url: 'New Url',
+        avatar: 'New Url',
         location: 'Honolulu, HI',
         bio: 'Really cool person'
       })
@@ -39,8 +39,8 @@ describe('POST /api/v1/users', () => {
         res.body.uid.should.equal('22');
         res.body.should.have.property('username');
         res.body.username.should.equal('New user');
-        res.body.should.have.property('photo_url');
-        res.body.photo_url.should.equal('New Url');
+        res.body.should.have.property('avatar');
+        res.body.avatar.should.equal('New Url');
         res.body.should.have.property('location');
         res.body.location.should.equal('Honolulu, HI');
         res.body.should.have.property('bio');

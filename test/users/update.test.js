@@ -12,7 +12,7 @@ describe('PUT /api/v1/users/:uid', () => {
           res.body.should.have.property('uid');
           res.body.uid.should.equal('56');
           res.body.should.have.property('username');
-          res.body.should.have.property('photo_url');
+          res.body.should.have.property('avatar');
           res.body.should.have.property('location');
           res.body.should.have.property('bio');
           done();
@@ -24,7 +24,7 @@ describe('PUT /api/v1/users/:uid', () => {
         .send({
           uid: '6689',
           username: 'Jim',
-          photo_url: 'Url',
+          avatar: 'Url',
           location: 'New Dehli',
           bio: 'Awesome'
         })
@@ -35,8 +35,8 @@ describe('PUT /api/v1/users/:uid', () => {
           res.body.uid.should.equal('6689');
           res.body.should.have.property('username');
           res.body.username.should.equal('Jim');
-          res.body.should.have.property('photo_url');
-          res.body.photo_url.should.equal('Url');
+          res.body.should.have.property('avatar');
+          res.body.avatar.should.equal('Url');
           res.body.should.have.property('location');
           res.body.location.should.equal('New Dehli');
           res.body.should.have.property('bio');
