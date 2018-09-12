@@ -32,9 +32,4 @@ const destroy = (req, res, next) => {
       res.sendStatus(404));
 };
 
-// const createMessage = (id, type) => {
-//   let message = { message: `Successfully deleted ${type} ${id}` };
-//   return message;
-// };
-
 module.exports = { create, index, show, update, destroy };
