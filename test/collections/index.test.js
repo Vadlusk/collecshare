@@ -15,6 +15,9 @@ describe('GET /api/v1/collections', () => {
         res.body[0].uid.should.equal('1');
         res.body[0].should.have.property('category');
         res.body[0].category.should.equal('comics');
+        res.body.should.have.property('title');
+        res.body.title.should.equal('My Collection');
+        res.body.should.have.property('description');
         done();
       });
   });
