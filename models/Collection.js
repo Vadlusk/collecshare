@@ -15,6 +15,10 @@ class Collection {
   static find(id) {
     return database.raw('SELECT * FROM collections WHERE id=?', [id]);
   }
+
+  static destroy(id) {
+    return database.raw('DELETE FROM collections WHERE id=?', [id])
+  }
 }
 
 module.exports = Collection;
