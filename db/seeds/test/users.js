@@ -29,26 +29,26 @@ exports.seed = function(knex, Promise) {
     })
     .then(() => {
       return knex('collections').insert([
-        { uid: '1', category: 'comics' },
-        { uid: '1', category: 'comics' },
-        { uid: '1', category: 'comics' },
-        { uid: '1', category: 'comics' },
-        { uid: '1', category: 'comics' },
-        { uid: '1', category: 'comics' },
-        { uid: '1', category: 'comics' },
-        { uid: '1', category: 'comics' },
-        { uid: '1', category: 'comics' },
-        { uid: '1', category: 'comics' },
-        { uid: '1', category: 'comics' },
-        { uid: '1', category: 'comics' },
-        { uid: '1', category: 'comics' },
-        { uid: '1', category: 'comics' },
-        { uid: '1', category: 'comics' },
-        { uid: '1', category: 'comics' },
-        { uid: '1', category: 'comics' },
-        { uid: '1', category: 'comics' },
-        { uid: '1', category: 'comics' },
-        { uid: '1', category: 'comics' }
+        { uid: '1', category: 'comics', title: 'My Collection' },
+        { uid: '1', category: 'comics', title: 'My Collection' },
+        { uid: '1', category: 'comics', title: 'My Collection' },
+        { uid: '1', category: 'comics', title: 'My Collection' },
+        { uid: '1', category: 'comics', title: 'My Collection' },
+        { uid: '1', category: 'comics', title: 'My Collection' },
+        { uid: '1', category: 'comics', title: 'My Collection' },
+        { uid: '1', category: 'comics', title: 'My Collection' },
+        { uid: '1', category: 'comics', title: 'My Collection' },
+        { uid: '1', category: 'comics', title: 'My Collection' },
+        { uid: '1', category: 'comics', title: 'My Collection' },
+        { uid: '1', category: 'comics', title: 'My Collection' },
+        { uid: '1', category: 'comics', title: 'My Collection' },
+        { uid: '1', category: 'comics', title: 'My Collection' },
+        { uid: '1', category: 'comics', title: 'My Collection' },
+        { uid: '1', category: 'comics', title: 'My Collection' },
+        { uid: '1', category: 'comics', title: 'My Collection' },
+        { uid: '1', category: 'comics', title: 'My Collection' },
+        { uid: '1', category: 'comics', title: 'My Collection' },
+        { uid: '1', category: 'comics', title: 'My Collection' }
       ]);
     })
 };
