@@ -20,7 +20,8 @@ class User {
   }
 
   static update(info, uid) {
-    let set = `${Object.keys(info)[0]} = ${Object.values(info)[0]}`;
+    const reducer = (result, val) => result + `${val[0]}='${val[1]}', `;
+    let set = Object.entries(info).reduce(reducer, '').slice(0, -2);
     return database.raw('UPDATE users SET ' + set + ' WHERE uid = ? RETURNING *', [uid]);
   }
 
