@@ -17,12 +17,12 @@ const index = (req, res, next) => {
 
 const show = (req, res, next) => {
   User.find(req.params.uid)
-    .then(user => user.rows[0] ? res.json(user.rows[0]) : res.sendStatus(404));
+    .then(user => helpers.sendJSON(user, 200, res));
 };
 
 const update = (req, res, next) => {
   User.update(req.body, req.params.uid)
-    .then(user => res.json(user.rows[0]));
+    .then(user => helpers.sendJSON(user, 200, res));
 };
 
 const destroy = (req, res, next) => {
