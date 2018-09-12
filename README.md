@@ -28,7 +28,7 @@ User objects are always returned in the following format:
 {
   "uid": string,
   "username": string,
-  "photo_url": string,
+  "avatar": string,
   "location": string,
   "bio": string
 }
@@ -41,7 +41,7 @@ creates a user with the following parameters:
 {
   "uid": string(required),
   "username": string(required),
-  "photo_url": string(optional),
+  "avatar": string(optional),
   "location": string(optional),
   "bio": string(optional)
 }
