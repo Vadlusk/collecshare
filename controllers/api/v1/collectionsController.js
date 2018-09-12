@@ -1,4 +1,5 @@
 const Collection = require('../../../models/Collection');
+const helpers = require('../../helpers');
 
 const create = (req, res, next) => {
   Collection.create(req.body)
@@ -18,7 +19,9 @@ const show = (req, res, next) => {
 
 const destroy = (req, res, next) => {
   Collection.destroy(req.params.id)
-    .then(message => res.json(message));
+    .then(message => message.rowCount === 1 ?
+      res.json(helpers.createMessage(req.params.uid, 'collection')) :
+      res.sendStatus(404));
 };
 
 module.exports = { create, index, show, destroy };

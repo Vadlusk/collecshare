@@ -1,4 +1,5 @@
-const User = require('../../../models/User');
+const User    = require('../../../models/User');
+const helpers = require('../../helpers');
 
 const create = (req, res, next) => {
   if (!req.body.username || !req.body.uid) {
@@ -27,12 +28,13 @@ const update = (req, res, next) => {
 const destroy = (req, res, next) => {
   User.destroy(req.params.uid)
     .then(message => message.rowCount === 1 ?
-      res.json(createMessage(req.params.uid)) : res.sendStatus(404));
+      res.json(helpers.createMessage(req.params.uid, 'user')) :
+      res.sendStatus(404));
 };
 
-const createMessage = id => {
-  let message = { message: `Successfully deleted user ${id}` };
-  return message;
-};
+// const createMessage = (id, type) => {
+//   let message = { message: `Successfully deleted ${type} ${id}` };
+//   return message;
+// };
 
 module.exports = { create, index, show, update, destroy };
