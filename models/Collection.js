@@ -2,10 +2,10 @@ const database = require('../db/config');
 
 class Collection {
   static create(info) {
-    let marks = '?, '.repeat(Object.keys(info).length).slice(0, -2);
+    sanitizeInfo(info);
     return database.raw(
-      'INSERT INTO collections (' + Object.keys(info) + ') VALUES (' + marks + ') RETURNING *',
-      Object.values(info)
+      'INSERT INTO collections (uid, category, title, description) VALUES (?, ?, ?, ?) RETURNING *',
+      [info.uid, info.category, info.title, info.description]
     );
   }
 
@@ -17,5 +17,10 @@ class Collection {
     return database.raw('SELECT * FROM collections WHERE id=?', [id]);
   }
 }
+
+const sanitizeInfo = info => {
+  if (info.description == undefined) info.description = null;
+  return info;
+};
 
 module.exports = Collection;
