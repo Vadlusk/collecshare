@@ -15,4 +15,9 @@ const show = (req, res, next) => {
     .then(collection => collection.rows[0] ? res.json(collection.rows[0]) : res.sendStatus(404));
 };
 
-module.exports = { create, index, show };
+const destroy = (req, res, next) => {
+  Collection.destroy(req.params.id)
+    .then(message => res.json(message));
+};
+
+module.exports = { create, index, show, destroy };

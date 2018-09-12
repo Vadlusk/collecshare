@@ -26,7 +26,8 @@ const update = (req, res, next) => {
 
 const destroy = (req, res, next) => {
   User.destroy(req.params.uid)
-    .then(info => info.rowCount === 1 ? res.json(createMessage(req.params.uid)) : res.sendStatus(404));
+    .then(message => message.rowCount === 1 ?
+      res.json(createMessage(req.params.uid)) : res.sendStatus(404));
 };
 
 const createMessage = id => {
