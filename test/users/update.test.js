@@ -38,9 +38,9 @@ describe('PUT /api/v1/users/:uid', () => {
           res.body.should.have.property('photo_url');
           res.body.photo_url.should.equal('Url');
           res.body.should.have.property('location');
-          res.body.location.should.equal('New Dehli')
+          res.body.location.should.equal('New Dehli');
           res.body.should.have.property('bio');
-          res.body.bio.should.equal('Awesome')
+          res.body.bio.should.equal('Awesome');
           done();
         });
     });
