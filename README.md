@@ -98,6 +98,13 @@ returns all the collections in the database
 
 returns the collection with that id number
 
+`PUT /api/v1/collections/:id`
+
+updates the specified collection.   
+use the same parameters for updating and creating.   
+the only difference is that no fields are required for updating.
+
+
 `DELETE /api/v1/collections/:id`
 
 deletes the collection with that id number
