@@ -19,7 +19,7 @@ const show = (req, res, next) => {
 
 const update = (req, res, next) => {
   Collection.update(req.body, req.params.id)
-    .then(collection => res.json(collection));
+    .then(collection => res.json(collection.rows[0]));
 };
 
 const destroy = (req, res, next) => {

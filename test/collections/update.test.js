@@ -30,7 +30,7 @@ describe('PUT /api/v1/collections/:uid', () => {
           res.should.have.status(200);
           res.should.be.json;
           res.body.should.have.property('id');
-          res.body.id.should.equal('1');
+          res.body.id.should.equal(1);
           res.body.should.have.property('title');
           res.body.title.should.equal('New');
           res.body.should.have.property('category');
