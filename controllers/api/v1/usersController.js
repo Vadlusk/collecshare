@@ -19,6 +19,11 @@ const show = (req, res, next) => {
     .then(user => user.rows[0] ? res.json(user.rows[0]) : res.sendStatus(404));
 };
 
+const update = (req, res, next) => {
+  User.update(req.body, req.params.uid)
+    .then(user => res.json(user.rows[0]));
+};
+
 const destroy = (req, res, next) => {
   User.destroy(req.params.uid)
     .then(info => info.rowCount === 1 ? res.json(createMessage(req.params.uid)) : res.sendStatus(404));
@@ -29,4 +34,4 @@ const createMessage = id => {
   return message;
 };
 
-module.exports = { create, index, show, destroy };
+module.exports = { create, index, show, update, destroy };

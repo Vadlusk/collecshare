@@ -19,6 +19,12 @@ class User {
     return database.raw('SELECT * FROM users WHERE uid = ?', [uid]);
   }
 
+  static update(info, uid) {
+    const reducer = (result, val) => result + `${val[0]}='${val[1]}', `;
+    let set = Object.entries(info).reduce(reducer, '').slice(0, -2);
+    return database.raw('UPDATE users SET ' + set + ' WHERE uid = ? RETURNING *', [uid]);
+  }
+
   static destroy(uid) {
     return database.raw('DELETE FROM users WHERE uid = ?', [uid]);
   }
