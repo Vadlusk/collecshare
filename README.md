@@ -94,6 +94,9 @@ creates a collection with the following parameters:
 
 returns all the collections in the database
 
+you can search by uid or category by including a query string like this:  
+`/collections?uid=youruidgoeshere` or `/collections?category=vinyl`
+
 `GET /api/v1/collections/:id`
 
 returns the collection with that id number

@@ -7,7 +7,7 @@ const create = (req, res, next) => {
 };
 
 const index = (req, res, next) => {
-  Collection.all()
+  Collection.all(req.query)
     .then(collections => res.json(collections.rows));
 };
 
