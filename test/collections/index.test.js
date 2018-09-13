@@ -29,16 +29,24 @@ describe('GET /api/v1/collections', () => {
           res.should.have.status(200);
           res.should.be.json;
           res.body.should.be.a('array');
+          res.body.length.should.equal(3);
+          res.body.forEach(collection => {
+            collection.uid.should.equal('1')
+          });
           done();
         });
     });
     it('for a category', done => {
       config.chai.request(config.app)
-      .get('/api/v1/collections?category="comics"')
+      .get('/api/v1/collections?category="vinyl"')
       .end((err, res) => {
         res.should.have.status(200);
         res.should.be.json;
         res.body.should.be.a('array');
+        res.body.length.should.equal(3);
+        res.body.forEach(collection => {
+          collection.category.should.equal('vinyl')
+        });
         done();
       });
     });
