@@ -24,7 +24,7 @@ describe('GET /api/v1/collections', () => {
     });
     it('for a uid', done => {
       config.chai.request(config.app)
-        .get('/api/v1/collections?uid="1"')
+        .get('/api/v1/collections?uid=1')
         .end((err, res) => {
           res.should.have.status(200);
           res.should.be.json;
@@ -38,7 +38,7 @@ describe('GET /api/v1/collections', () => {
     });
     it('for a category', done => {
       config.chai.request(config.app)
-      .get('/api/v1/collections?category="vinyl"')
+      .get('/api/v1/collections?category=vinyl')
       .end((err, res) => {
         res.should.have.status(200);
         res.should.be.json;

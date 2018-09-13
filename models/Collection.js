@@ -8,8 +8,10 @@ class Collection {
     return database.raw(q, [info.uid, info.category, info.title, info.description]);
   }
 
-  static all() {
-    return database.raw('SELECT * FROM collections');
+  static all(query) {
+    let str = 'SELECT * FROM collections';
+    if (Object.keys(query).length > 0) str += ` WHERE ${Object.keys(query)[0]}='${Object.values(query)[0]}'`
+    return database.raw(str);
   }
 
   static find(id) {
