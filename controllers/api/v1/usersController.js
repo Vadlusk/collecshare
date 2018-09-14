@@ -21,6 +21,7 @@ const show = (req, res, next) => {
 };
 
 const update = (req, res, next) => {
+  req.body.avatar = req.file.path;
   User.update(req.body, req.params.uid)
     .then(user => helpers.sendJSON(user, 200, res));
 };
