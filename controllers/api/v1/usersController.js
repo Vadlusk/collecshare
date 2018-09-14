@@ -1,5 +1,7 @@
 const User    = require('../../../models/User');
 const helpers = require('../../helpers');
+const multer  = require('multer');
+const upload  = multer({ dest: '/avatars/' });
 
 const create = (req, res, next) => {
   if (!req.body.username || !req.body.uid) {
@@ -21,6 +23,7 @@ const show = (req, res, next) => {
 };
 
 const update = (req, res, next) => {
+  console.log(req.body)
   User.update(req.body, req.params.uid)
     .then(user => helpers.sendJSON(user, 200, res));
 };
