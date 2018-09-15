@@ -1,3 +1,4 @@
+[![CircleCI](https://circleci.com/gh/Vadlusk/collecshare/tree/master.svg?style=svg)](https://circleci.com/gh/Vadlusk/collecshare/tree/master)
 # Collecshare
 is a social app for collectors of all things.  
 Manage, share, buy, sell or trade your valuables on a global scale.   
