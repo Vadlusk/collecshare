@@ -1,37 +1,18 @@
-var config = require('../test_helper');
+var config  = require('../test_helper');
+var helpers = require('./collectionHelpers');
 
 describe('POST /api/v1/collections', () => {
   context('should create a collection', () => {
-    it('with all required parameters', done => {
-      postToCollections('reqd', done, null);
-    });
-    it('with all required and optional parameters', done => {
-      postToCollections('optional', done, 'Pretty good');
-    });
+    it('with required parameters', done => postToCollections('reqd', done, null));
+    it('with all parameters', done => postToCollections('all', done, 'Pretty good'));
   });
   context('should not create a collection without', () => {
-    it('anything', done => postToCollections('anything', done, null));
-    it('a uid', done => postToCollections('uid', done, null));
     it('a category', done => postToCollections('category', done, null));
+    it('anything', done => postToCollections('anything', done, null));
     it('a title', done => postToCollections('title', done, null));
+    it('a uid', done => postToCollections('uid', done, null));
   });
 });
-
-const collectionAssertions = (res, status, id, uid, category, title, desc) => {
-  res.should.have.status(status);
-  res.should.be.json;
-  res.body.should.be.a('object');
-  res.body.should.have.property('id');
-  res.body.should.have.property('uid');
-  res.body.should.have.property('category');
-  res.body.should.have.property('title');
-  res.body.should.have.property('description');
-  res.body.id.should.equal(id);
-  res.body.uid.should.equal(uid);
-  res.body.category.should.equal(category);
-  res.body.title.should.equal(title);
-  res.body.description ? res.body.description.should.equal(desc) : null;
-};
 
 const createCollectionErrorAssertions = res => {
   res.should.have.status(400);
@@ -48,7 +29,7 @@ const postToCollections = (situation, done, desc) => {
     if (res.status === 400) {
       createCollectionErrorAssertions(res);
     } else {
-      collectionAssertions(res, 201, 21, '1', 'comics', 'New', desc);
+      helpers.collectionAssertions(res, 201, 21, '1', 'comics', 'New', desc);
     }
     done();
   });
@@ -69,7 +50,7 @@ const determinePayload = item => {
     case 'reqd':
       payload = { uid: '1', category: 'comics', title: 'New' }
       break;
-    case 'optional':
+    case 'all':
       payload = { uid: '1', category: 'comics', title: 'New',
         description: 'Pretty good' }
       break;

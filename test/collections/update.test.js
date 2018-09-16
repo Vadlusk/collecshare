@@ -1,4 +1,6 @@
-var config = require('../test_helper');
+var config  = require('../test_helper');
+var helpers = require('./collectionHelpers');
+
 
 describe('PUT /api/v1/collections/:id', () => {
   context('should edit a collection with', () => {
@@ -7,36 +9,18 @@ describe('PUT /api/v1/collections/:id', () => {
         .put('/api/v1/collections/1')
         .send({title: 'Title'})
         .end((err, res) => {
-          res.should.have.status(200);
-          res.should.be.json;
-          res.body.should.have.property('id');
-          res.body.id.should.equal(1)
-          res.body.should.have.property('title');
-          res.body.title.should.equal('Title');
-          res.body.should.have.property('category');
-          res.body.should.have.property('description');
+          helpers.collectionAssertions(res, 200, 1, '1',
+            'comics', 'Title', null);
           done();
         });
     });
     it('all valid parameters', done => {
       config.chai.request(config.app)
         .put('/api/v1/collections/1')
-        .send({
-          title: 'New',
-          category: 'Comics',
-          description: 'Cool'
-        })
+        .send({ title: 'New', category: 'Comics', description: 'Cool' })
         .end((err, res) => {
-          res.should.have.status(200);
-          res.should.be.json;
-          res.body.should.have.property('id');
-          res.body.id.should.equal(1);
-          res.body.should.have.property('title');
-          res.body.title.should.equal('New');
-          res.body.should.have.property('category');
-          res.body.category.should.equal('Comics');
-          res.body.should.have.property('description');
-          res.body.description.should.equal('Cool');
+          helpers.collectionAssertions(res, 200, 1, '1',
+            'Comics', 'New', 'Cool');
           done();
         });
     });
