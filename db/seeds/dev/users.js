@@ -53,8 +53,8 @@ exports.seed = function(knex, Promise) {
     })
 };
 
-const desc = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis
+const desc = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis
 efficitur nisi vitae mauris scelerisque, ac ornare velit consequat. Orci varius
 natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
 Morbi sed sagittis nisi. Class aptent taciti sociosqu ad litora torquent per
-conubia nostra, per inceptos himenaeos."
+conubia nostra, per inceptos himenaeos.`
