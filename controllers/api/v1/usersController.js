@@ -3,7 +3,8 @@ const helpers = require('../../helpers');
 
 const create = (req, res, next) => {
   if (!req.body.username || !req.body.uid) {
-    res.sendStatus(400);
+    let message = { 'error': 'uid, username required' }
+    res.status(400).json(message);
   } else {
     User.create(req.body)
     .then(user => helpers.sendJSON(user, 201, res));

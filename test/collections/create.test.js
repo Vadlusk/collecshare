@@ -43,6 +43,43 @@ describe('POST /api/v1/collections', () => {
         done();
       });
     });
-
+  });
+  context('should not create a collection without', () => {
+    it('anything', done => sendWithout('anything', done));
+    it('a uid', done => sendWithout('uid', done));
+    it('a category', done => sendWithout('category', done));
+    it('a title', done => sendWithout('title', done));
   });
 });
+
+const sendWithout = (missingItem, done) => {
+  let payload = determinePayload(missingItem);
+  config.chai.request(config.app)
+  .post('/api/v1/collections')
+  .send(payload)
+  .end((err, res) => {
+    res.should.have.status(400);
+    res.should.be.json;
+    res.body.should.have.property('error');
+    res.body.error.should.equal('uid, category, title required');
+    done();
+  });
+};
+
+const determinePayload = item => {
+  let payload;
+  switch (item) {
+    case 'uid':
+      payload = { category: 'comics', title: 'New' }
+      break;
+    case 'category':
+      payload = { uid: '1', title: 'New' }
+      break;
+    case 'title':
+      payload = { uid: '1', category: 'comics' }
+      break;
+    default:
+      payload = {}
+  };
+  return payload
+};
