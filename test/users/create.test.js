@@ -5,7 +5,7 @@ describe('POST /api/v1/users', () => {
     it('only uid and name', done => {
       config.chai.request(config.app)
       .post('/api/v1/users')
-      .send({uid: '22', username: 'New user'})
+      .send(determinePayload('reqd'))
       .end((err, res) => {
         res.should.have.status(201);
         res.should.be.json;
@@ -21,16 +21,10 @@ describe('POST /api/v1/users', () => {
         done();
       });
     });
-    it('uid, name, avatar, location, and bio', done => {
+    it('uid, name, location, and bio', done => {
       config.chai.request(config.app)
       .post('/api/v1/users')
-      .send({
-        uid: '22',
-        username: 'New user',
-        avatar: 'New Url',
-        location: 'Honolulu, HI',
-        bio: 'Really cool person'
-      })
+      .send(determinePayload('all'))
       .end((err, res) => {
         res.should.have.status(201);
         res.should.be.json;
@@ -40,7 +34,6 @@ describe('POST /api/v1/users', () => {
         res.body.should.have.property('username');
         res.body.username.should.equal('New user');
         res.body.should.have.property('avatar');
-        res.body.avatar.should.equal('New Url');
         res.body.should.have.property('location');
         res.body.location.should.equal('Honolulu, HI');
         res.body.should.have.property('bio');
@@ -78,6 +71,13 @@ const determinePayload = item => {
       break;
     case 'username':
       payload = { uid: '1' }
+      break;
+    case 'reqd':
+      payload = {uid: '22', username: 'New user'}
+      break;
+    case 'all':
+      payload = { uid: '22', username: 'New user', location: 'Honolulu, HI',
+        bio: 'Really cool person' }
       break;
     default:
       payload = {}
