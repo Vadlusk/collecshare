@@ -58,7 +58,10 @@ const sendWithout = (missingItem, done) => {
   .post('/api/v1/collections')
   .send(payload)
   .end((err, res) => {
-    createCollectionErrAssertions(res);
+    res.should.have.status(400);
+    res.should.be.json;
+    res.body.should.have.property('error');
+    res.body.error.should.equal('uid, category, title required');
     done();
   });
 };
@@ -79,11 +82,4 @@ const determinePayload = item => {
       payload = {}
   };
   return payload
-};
-
-const createCollectionErrAssertions = res => {
-  res.should.have.status(400);
-  res.should.be.json;
-  res.body.should.have.property('error');
-  res.body.error.should.equal('uid, category, title required');
 };

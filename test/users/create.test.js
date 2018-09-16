@@ -50,31 +50,37 @@ describe('POST /api/v1/users', () => {
     });
   });
   context('should not create a user without', () => {
-    it('anything', done => {
-      config.chai.request(config.app)
-      .post('/api/v1/users')
-      .end((err, res) => {
-        res.should.have.status(400);
-        done();
-      });
-    });
-    it('a uid', done => {
-      config.chai.request(config.app)
-      .post('/api/v1/users')
-      .send({uid: '22'})
-      .end((err, res) => {
-        res.should.have.status(400);
-        done();
-      });
-    });
-    it('a username', done => {
-      config.chai.request(config.app)
-      .post('/api/v1/users')
-      .send({username: 'Bad User'})
-      .end((err, res) => {
-        res.should.have.status(400);
-        done();
-      });
-    });
+    it('anything', done => sendWithout('anything', done));
+    it('a uid', done => sendWithout('uid', done));
+    it('a username', done => sendWithout('username', done));
   });
 });
+
+const sendWithout = (missingItem, done) => {
+  let payload = determinePayload(missingItem);
+  config.chai.request(config.app)
+  .post('/api/v1/users')
+  .send(payload)
+  .end((err, res) => {
+    res.should.have.status(400);
+    res.should.be.json;
+    res.body.should.have.property('error');
+    res.body.error.should.equal('uid, username required');
+    done();
+  });
+};
+
+const determinePayload = item => {
+  let payload;
+  switch (item) {
+    case 'uid':
+      payload = { username: 'Bad User' }
+      break;
+    case 'username':
+      payload = { uid: '1' }
+      break;
+    default:
+      payload = {}
+  };
+  return payload
+};
