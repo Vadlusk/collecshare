@@ -58,7 +58,7 @@ describe('POST /api/v1/users', () => {
         done();
       });
     });
-    it('uid', done => {
+    it('a uid', done => {
       config.chai.request(config.app)
       .post('/api/v1/users')
       .send({uid: '22'})
@@ -67,7 +67,7 @@ describe('POST /api/v1/users', () => {
         done();
       });
     });
-    it('username', done => {
+    it('a username', done => {
       config.chai.request(config.app)
       .post('/api/v1/users')
       .send({username: 'Bad User'})
