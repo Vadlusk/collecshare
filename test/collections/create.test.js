@@ -3,14 +3,77 @@ var helpers = require('./collectionHelpers');
 
 describe('POST /api/v1/collections', () => {
   context('should create a collection', () => {
-    it('with required parameters', done => postToCollections('reqd', done, null));
-    it('with all parameters', done => postToCollections('all', done, 'Pretty good'));
+    it('with required parameters', done => {
+      config.chai.request(config.app)
+      .post('/api/v1/collections')
+      .type('form')
+      .field('uid', '1')
+      .field('category', 'comics')
+      .field('title', 'New')
+      .end((err, res) => {
+        helpers.collectionAssertions(res, 201, 21, '1',
+          'comics', 'New', null, defImage);
+        done();
+      });
+    });
+    it('with all parameters', done => {
+      config.chai.request(config.app)
+      .post('/api/v1/collections')
+      .attach('image', 'test/users/test.jpg', 'test.jpg')
+      .type('form')
+      .field('uid', '1')
+      .field('category', 'comics')
+      .field('title', 'New')
+      .end((err, res) => {
+        helpers.collectionAssertions(res, 201, 21, '1',
+          'comics', 'New', "image");
+        done();
+      });
+    });
   });
   context('should not create a collection without', () => {
-    it('a category', done => postToCollections('category', done, null));
-    it('anything', done => postToCollections('anything', done, null));
-    it('a title', done => postToCollections('title', done, null));
-    it('a uid', done => postToCollections('uid', done, null));
+    it('anything', done => {
+      config.chai.request(config.app)
+      .post('/api/v1/collections')
+      .type('form')
+      .end((err, res) => {
+        createCollectionErrorAssertions(res);
+        done();
+      });
+    });
+    it('a uid', done => {
+      config.chai.request(config.app)
+      .post('/api/v1/collections')
+      .type('form')
+      .field('category', 'comics')
+      .field('title', 'New')
+      .end((err, res) => {
+        createCollectionErrorAssertions(res);
+        done();
+      });
+    });
+    it('a category', done => {
+      config.chai.request(config.app)
+      .post('/api/v1/collections')
+      .type('form')
+      .field('uid', '1')
+      .field('title', 'New')
+      .end((err, res) => {
+        createCollectionErrorAssertions(res);
+        done();
+      });
+    });
+    it('a title', done => {
+      config.chai.request(config.app)
+      .post('/api/v1/collections')
+      .type('form')
+      .field('uid', '1')
+      .field('category', 'comics')
+      .end((err, res) => {
+        createCollectionErrorAssertions(res);
+        done();
+      });
+    });
   });
 });
 
@@ -19,43 +82,4 @@ const createCollectionErrorAssertions = res => {
   res.should.be.json;
   res.body.should.have.property('error');
   res.body.error.should.equal('uid, category, title required');
-};
-
-const postToCollections = (situation, done, desc) => {
-  config.chai.request(config.app)
-  .post('/api/v1/collections')
-  .send(determinePayload(situation))
-  .end((err, res) => {
-    if (res.status === 400) {
-      createCollectionErrorAssertions(res);
-    } else {
-      helpers.collectionAssertions(res, 201, 21, '1', 'comics', 'New', desc);
-    }
-    done();
-  });
-};
-
-const determinePayload = item => {
-  let payload;
-  switch (item) {
-    case 'uid':
-      payload = { category: 'comics', title: 'New' }
-      break;
-    case 'category':
-      payload = { uid: '1', title: 'New' }
-      break;
-    case 'title':
-      payload = { uid: '1', category: 'comics' }
-      break;
-    case 'reqd':
-      payload = { uid: '1', category: 'comics', title: 'New' }
-      break;
-    case 'all':
-      payload = { uid: '1', category: 'comics', title: 'New',
-        description: 'Pretty good' }
-      break;
-    default:
-      payload = {}
-  };
-  return payload
 };
