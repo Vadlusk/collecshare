@@ -75,7 +75,8 @@ Collection objects are always returned thusly:
   "uid": string,
   "category": string,
   "title": string,
-  "description": string
+  "description": string,
+  "image": string
 }
 ```
 
@@ -88,8 +89,10 @@ creates a collection with the following parameters:
   "category": string(required),
   "title": string(required),
   "description": string(optional)
+  "image": .jpeg/.png(optional)
 }
 ```
+request body must be sent as form data with header "content-type": "multipart/form"  
 
 `GET /api/v1/collections`
 

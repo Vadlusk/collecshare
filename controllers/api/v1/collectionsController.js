@@ -2,6 +2,7 @@ const Collection = require('../../../models/Collection');
 const helpers = require('../../helpers');
 
 const create = (req, res, next) => {
+  if (req.file) req.body.image = req.file.path;
   if (!req.body.uid || !req.body.category || !req.body.title) {
     let message = { 'error': 'uid, category, title required' };
     res.status(400).json(message);
