@@ -4,8 +4,8 @@ const helpers  = require('./helpers');
 class Collection {
   static create(info) {
     helpers.sanitizeInfo(info, 'collection');
-    let q = 'INSERT INTO collections (uid, category, title, description) VALUES (?, ?, ?, ?) RETURNING *'
-    return database.raw(q, [info.uid, info.category, info.title, info.description]);
+    let q = 'INSERT INTO collections (uid, category, title, description, image) VALUES (?, ?, ?, ?, ?) RETURNING *'
+    return database.raw(q, [info.uid, info.category, info.title, info.description, info.image]);
   }
 
   static all(query) {

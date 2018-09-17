@@ -19,6 +19,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.use('/avatars', express.static('avatars'));
+app.use('/images', express.static('images'));
 app.use('/api/v1/collections', collectionsRouter);
 app.use('/api/v1/users', usersRouter);
 app.use('/api/v1/search', searchRouter);

@@ -7,7 +7,7 @@ describe('GET /api/v1/collections/:id', () => {
       .get('/api/v1/collections/1')
       .end((err, res) => {
         helpers.collectionAssertions(res, 200, 1, '1',
-          'comics', 'My Collection', null);
+          'comics', 'My Collection');
         done();
       });
   });

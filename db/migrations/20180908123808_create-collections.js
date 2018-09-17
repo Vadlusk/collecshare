@@ -5,7 +5,8 @@ exports.up = function(knex, Promise) {
     uid TEXT REFERENCES users ON DELETE CASCADE ON UPDATE CASCADE,
     category TEXT NOT NULL,
     title TEXT NOT NULL,
-    description TEXT
+    description TEXT,
+    image TEXT
   )`);
 };
 
