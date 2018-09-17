@@ -1,4 +1,4 @@
-const collectionAssertions = (res, status, id, uid, category, title, desc, image) => {
+const collectionAssertions = (res, status, id, uid, category, title, desc) => {
   res.should.have.status(status);
   res.should.be.json;
   res.body.should.be.a('object');
@@ -13,7 +13,6 @@ const collectionAssertions = (res, status, id, uid, category, title, desc, image
   res.body.category.should.equal(category);
   res.body.title.should.equal(title);
   res.body.description ? res.body.description.should.equal(desc) : null;
-  res.body.image.should.equal(image);
 };
 
 module.exports = { collectionAssertions }

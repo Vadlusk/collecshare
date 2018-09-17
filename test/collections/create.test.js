@@ -1,5 +1,5 @@
-var config  = require('../test_helper');
-var helpers = require('./collectionHelpers');
+var config     = require('../test_helper');
+var helpers    = require('./collectionHelpers');
 
 describe('POST /api/v1/collections', () => {
   context('should create a collection', () => {
@@ -12,21 +12,21 @@ describe('POST /api/v1/collections', () => {
       .field('title', 'New')
       .end((err, res) => {
         helpers.collectionAssertions(res, 201, 21, '1',
-          'comics', 'New', null, defImage);
+          'comics', 'New', null);
         done();
       });
     });
     it('with all parameters', done => {
       config.chai.request(config.app)
       .post('/api/v1/collections')
-      .attach('image', 'test/users/test.jpg', 'test.jpg')
+      .attach('image', 'test/collections/test.png', 'test.png')
       .type('form')
       .field('uid', '1')
       .field('category', 'comics')
       .field('title', 'New')
       .end((err, res) => {
         helpers.collectionAssertions(res, 201, 21, '1',
-          'comics', 'New', "image");
+          'comics', 'New');
         done();
       });
     });
