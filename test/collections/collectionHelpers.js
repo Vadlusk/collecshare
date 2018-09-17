@@ -7,6 +7,7 @@ const collectionAssertions = (res, status, id, uid, category, title, desc) => {
   res.body.should.have.property('category');
   res.body.should.have.property('title');
   res.body.should.have.property('description');
+  res.body.should.have.property('image');
   res.body.id.should.equal(id);
   res.body.uid.should.equal(uid);
   res.body.category.should.equal(category);
