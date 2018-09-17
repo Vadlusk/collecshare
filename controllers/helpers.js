@@ -11,7 +11,7 @@ const sendJSON = (payload, status, res) => {
 
 const checkSize = (size, res) => {
   if (size > (1024 * 1024 * 5)) {
-    let msg = { error: 'File size cannot 5mb'};
+    let msg = { error: 'File size cannot exceed 5mb'};
     res.json(msg);
   }
 };
