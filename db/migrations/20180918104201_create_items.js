@@ -6,7 +6,7 @@ exports.up = function(knex, Promise) {
     title TEXT NOT NULL,
     value INT DEFAULT 0,
     description TEXT,
-    image TEXT
+    image TEXT DEFAULT 'avatars/books.jpg'
   )`);
 };
 

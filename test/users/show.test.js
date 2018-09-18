@@ -13,9 +13,7 @@ describe('GET /api/v1/users/:uid', () => {
         res.body.should.have.property('username');
         res.body.username.should.equal('Jill');
         res.body.should.have.property('avatar');
-        res.body.avatar.should.equal(
-          'http://shec-labs.com/wp-content/themes/creativemag/images/default.png'
-        );
+        res.body.avatar.should.equal('avatars/avatar.png');
         res.body.should.have.property('location');
         res.body.location.should.equal('Denver, CO');
         res.body.should.have.property('bio');
