@@ -9,10 +9,4 @@ const sendJSON = (payload, status, res) => {
   res.sendStatus(404);
 };
 
-const checkSize = (size, res) => {
-  if (size > (1024 * 1024 * 5)) {
-    let msg = { error: 'File size cannot exceed 5mb'};
-    res.json(msg);
-  }
-};
-module.exports = { createMessage, sendJSON, checkSize }
+module.exports = { createMessage, sendJSON }
