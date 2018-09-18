@@ -7,7 +7,7 @@ const create = (req, res, next) => {
 
 const index = (req, res, next) => {
   Item.all().
-    then(items => res.json(items));
+    then(items => res.json(items.rows));
 };
 
 const show = (req, res, next) => {

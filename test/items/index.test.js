@@ -12,14 +12,14 @@ describe('GET /api/v1/items', () => {
         res.body[0].should.have.property('id');
         res.body[0].id.should.equal(1);
         res.body[0].should.have.property('collection_id');
-        res.body[0].collection_id.should.equal('1');
+        res.body[0].collection_id.should.equal(1);
         res.body[0].should.have.property('image');
         res.body[0].should.have.property('value');
-        res.body[0].value.should.equal('5.00');
+        res.body[0].value.should.equal(0);
         res.body[0].should.have.property('title');
-        res.body[0].title.should.equal('Item');
+        res.body[0].title.should.equal('Cool thing');
         res.body[0].should.have.property('description');
-        res.body[0].description.should.equal('Cool thing I have');
+        res.body[0].description.should.equal('I have this.');
         done();
       });
   });
