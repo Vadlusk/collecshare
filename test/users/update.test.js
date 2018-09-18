@@ -27,7 +27,7 @@ describe('PUT /api/v1/users/:uid', () => {
       config.chai.request(config.app)
         .put('/api/v1/users/1')
         .type('form')
-        // .attach('avatar', fs.readFileSync('test/users/test.jpg'), 'test.jpg')
+        .attach('avatar', fs.readFileSync('test/users/test.jpg'), 'test.jpg')
         .field('username', 'Jim')
         .field('location', 'New Dehli')
         .field('bio', 'Awesome')
