@@ -51,4 +51,22 @@ describe('GET /api/v1/collections', () => {
       });
     });
   });
+  context('should 404 if', () => {
+    it('the search param is category and there are none', done => {
+      config.database.raw('DELETE FROM collections');
+      config.chai.request(config.app)
+      .get('/api/v1/collections?category=vinyl')
+      .end((err, res) => {
+        done();
+      });
+    });
+    it('the search param is uid and there are none', done => {
+      config.database.raw('DELETE FROM collections');
+      config.chai.request(config.app)
+      .get('/api/v1/collections?uid=2')
+      .end((err, res) => {
+        done();
+      });
+    });
+  });
 });
