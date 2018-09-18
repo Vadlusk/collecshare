@@ -1,5 +1,6 @@
 var config     = require('../test_helper');
 var helpers    = require('./collectionHelpers');
+var fs = require('fs');
 
 describe('POST /api/v1/collections', () => {
   context('should create a collection', () => {
@@ -19,8 +20,8 @@ describe('POST /api/v1/collections', () => {
     it('with all parameters', done => {
       config.chai.request(config.app)
       .post('/api/v1/collections')
-      .attach('image', 'test/collections/test.png', 'test.png')
       .type('form')
+      .attach('image', fs.readFileSync('test/collections/test.png'), 'test.png')
       .field('uid', '1')
       .field('category', 'comics')
       .field('title', 'New')
@@ -38,6 +39,7 @@ describe('POST /api/v1/collections', () => {
       .type('form')
       .end((err, res) => {
         createCollectionErrorAssertions(res);
+        res.body.error.should.equal('uid, category, title required');
         done();
       });
     });
@@ -49,6 +51,7 @@ describe('POST /api/v1/collections', () => {
       .field('title', 'New')
       .end((err, res) => {
         createCollectionErrorAssertions(res);
+        res.body.error.should.equal('uid, category, title required');
         done();
       });
     });
@@ -60,6 +63,7 @@ describe('POST /api/v1/collections', () => {
       .field('title', 'New')
       .end((err, res) => {
         createCollectionErrorAssertions(res);
+        res.body.error.should.equal('uid, category, title required');
         done();
       });
     });
@@ -69,6 +73,20 @@ describe('POST /api/v1/collections', () => {
       .type('form')
       .field('uid', '1')
       .field('category', 'comics')
+      .end((err, res) => {
+        createCollectionErrorAssertions(res);
+        res.body.error.should.equal('uid, category, title required');
+        done();
+      });
+    });
+    it('a small enough file', done => {
+      config.chai.request(config.app)
+      .post('/api/v1/collections')
+      .type('form')
+      .attach('image', fs.readFileSync('test/collections/10MB.jpg'), '10MB.jpg')
+      .field('uid', '1')
+      .field('category', 'comics')
+      .field('title', 'New')
       .end((err, res) => {
         createCollectionErrorAssertions(res);
         done();
@@ -81,5 +99,4 @@ const createCollectionErrorAssertions = res => {
   res.should.have.status(400);
   res.should.be.json;
   res.body.should.have.property('error');
-  res.body.error.should.equal('uid, category, title required');
 };

@@ -6,7 +6,9 @@ var cors        = require('cors');
 
 var usersRouter       = require('./routes/api/v1/users');
 var searchRouter      = require('./routes/api/v1/search');
+var itemsRouter       = require('./routes/api/v1/items');
 var collectionsRouter = require('./routes/api/v1/collections');
+
 
 var app = express();
 
@@ -15,11 +17,11 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 app.use(logger('dev'));
 app.use(cors());
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.json({ limit: '5mb' }));
+app.use(express.urlencoded({ limit: '5mb' , extended: false }));
 
 app.use('/avatars', express.static('avatars'));
-app.use('/images', express.static('images'));
+app.use('/api/v1/items', itemsRouter);
 app.use('/api/v1/collections', collectionsRouter);
 app.use('/api/v1/users', usersRouter);
 app.use('/api/v1/search', searchRouter);
@@ -30,7 +32,13 @@ app.use(function(req, res, next) {
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use((err, req, res, next) => {
+  if (err.code === 'LIMIT_FILE_SIZE') {
+    res.status(400).send({ result: 'fail', error: {
+      code: 400,
+      message: 'File size cannot exceed 5mb'
+    } })
+  }
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};

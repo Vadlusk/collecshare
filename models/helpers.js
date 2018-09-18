@@ -6,7 +6,7 @@ const set = info => {
 const sanitizeInfo = (info, type) => {
   switch (type) {
     case 'user':
-      if (info.avatar == undefined) info.avatar = 'http://shec-labs.com/wp-content/themes/creativemag/images/default.png';
+      if (info.avatar == undefined) info.avatar = 'avatars/avatar.png';
       if (info.location == undefined) info.location = null;
       if (info.bio == undefined) info.bio = null;
       return info;

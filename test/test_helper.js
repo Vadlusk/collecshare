@@ -17,7 +17,4 @@ beforeEach((done) => {
     });
 });
 
-module.exports = {
-  chai,
-  app
-};
+module.exports = { chai, app, database };

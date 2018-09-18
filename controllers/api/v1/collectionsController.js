@@ -7,7 +7,6 @@ const create = (req, res, next) => {
     let message = { 'error': 'uid, category, title required' };
     res.status(400).json(message);
   } else {
-    console.log(req.body);
     Collection.create(req.body)
     .then(collection => helpers.sendJSON(collection, 201, res));
   }

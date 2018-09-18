@@ -51,4 +51,28 @@ exports.seed = function(knex, Promise) {
         { uid: '6', category: 'comics', title: 'My Collection' }
       ]);
     })
+    .then(() => {
+      return knex('items').insert([
+        { collection_id: '1', title: 'Cool thing', description: 'I have this.' },
+        { collection_id: '1', title: 'Cool thing', description: 'I have this.' },
+        { collection_id: '1', title: 'Cool thing', description: 'I have this.' },
+        { collection_id: '2', title: 'Cool thing', description: 'I have this.' },
+        { collection_id: '2', title: 'Cool thing', description: 'I have this.' },
+        { collection_id: '2', title: 'Cool thing', description: 'I have this.' },
+        { collection_id: '2', title: 'Cool thing', description: 'I have this.' },
+        { collection_id: '3', title: 'Cool thing', description: 'I have this.' },
+        { collection_id: '4', title: 'Cool thing', description: 'I have this.' },
+        { collection_id: '4', title: 'Cool thing', description: 'I have this.' },
+        { collection_id: '5', title: 'Cool thing', description: 'I have this.' },
+        { collection_id: '5', title: 'Cool thing', description: 'I have this.' },
+        { collection_id: '5', title: 'Cool thing', description: 'I have this.' },
+        { collection_id: '5', title: 'Cool thing', description: 'I have this.' },
+        { collection_id: '5', title: 'Cool thing', description: 'I have this.' },
+        { collection_id: '5', title: 'Cool thing', description: 'I have this.' },
+        { collection_id: '5', title: 'Cool thing', description: 'I have this.' },
+        { collection_id: '5', title: 'Cool thing', description: 'I have this.' },
+        { collection_id: '5', title: 'Cool thing', description: 'I have this.' },
+        { collection_id: '6', title: 'Cool thing', description: 'I have this.' }
+      ]);
+    })
 };
