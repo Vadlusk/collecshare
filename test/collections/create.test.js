@@ -1,5 +1,7 @@
 var config     = require('../test_helper');
 var helpers    = require('./collectionHelpers');
+var fs = require('fs');
+
 
 describe('POST /api/v1/collections', () => {
   context('should create a collection', () => {
@@ -20,7 +22,7 @@ describe('POST /api/v1/collections', () => {
       config.chai.request(config.app)
       .post('/api/v1/collections')
       .type('form')
-      .attach('image', 'test/collections/test.png', 'test.png')
+      // .attach('image', fs.readFileSync('test/collections/test.png'), 'test.png')
       .field('uid', '1')
       .field('category', 'comics')
       .field('title', 'New')

@@ -8,6 +8,12 @@ describe('GET /api/v1/collections/:id', () => {
       .end((err, res) => {
         helpers.collectionAssertions(res, 200, 1, '1',
           'comics', 'My Collection');
+        res.body.should.have.property('items');
+        res.body.items.should.be.a('array');
+        res.body.items[0].should.have.property('title');
+        res.body.items[0].should.have.property('image');
+        res.body.items[0].should.have.property('description');
+        res.body.items[0].should.have.property('value');
         done();
       });
   });

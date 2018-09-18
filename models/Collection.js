@@ -15,7 +15,14 @@ class Collection {
   }
 
   static find(id) {
-    return database.raw('SELECT * FROM collections WHERE id=?', [id]);
+    let query = `SELECT c.*,
+                 COALESCE(json_agg(i.* ORDER BY i.id)
+                 FILTER (WHERE i.id IS NOT NULL), '[]') AS items
+                 FROM collections c
+                 LEFT JOIN items i ON i.collection_id = c.id
+                 WHERE c.id=?
+                 GROUP BY c.id`
+    return database.raw(query, [id]);
   }
 
   static update(info, id) {
