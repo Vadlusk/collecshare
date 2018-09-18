@@ -10,7 +10,7 @@ describe('GET /api/v1/items', () => {
         res.body.should.be.a('array');
         res.body.length.should.equal(20);
         res.body[0].should.have.property('id');
-        res.body[0].id.should.equal('1');
+        res.body[0].id.should.equal(1);
         res.body[0].should.have.property('collection_id');
         res.body[0].collection_id.should.equal('1');
         res.body[0].should.have.property('image');
