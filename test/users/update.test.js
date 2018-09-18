@@ -1,4 +1,5 @@
 var config = require('../test_helper');
+var fs = require('fs');
 
 describe('PUT /api/v1/users/:uid', () => {
   context('should edit a user with', () => {
@@ -6,7 +7,7 @@ describe('PUT /api/v1/users/:uid', () => {
       config.chai.request(config.app)
         .put('/api/v1/users/1')
         .type('form')
-        .attach('avatar', 'test/users/test.jpg', 'test.jpg')
+        .attach('avatar', fs.readFileSync('test/users/test.jpg'), 'test.jpg')
         .end((err, res) => {
           res.should.have.status(200);
           res.should.be.json;
@@ -26,7 +27,7 @@ describe('PUT /api/v1/users/:uid', () => {
       config.chai.request(config.app)
         .put('/api/v1/users/1')
         .type('form')
-        .attach('avatar', 'test/users/test.jpg', 'test.jpg')
+        .attach('avatar', fs.readFileSync('test/users/test.jpg'), 'test.jpg')
         .field('username', 'Jim')
         .field('location', 'New Dehli')
         .field('bio', 'Awesome')
