@@ -57,6 +57,9 @@ describe('GET /api/v1/collections', () => {
       config.chai.request(config.app)
       .get('/api/v1/collections?category=vinyl')
       .end((err, res) => {
+        res.should.have.status(200);
+        res.should.be.json;
+        res.body.should.be.a('array');
         done();
       });
     });
@@ -65,6 +68,9 @@ describe('GET /api/v1/collections', () => {
       config.chai.request(config.app)
       .get('/api/v1/collections?uid=2')
       .end((err, res) => {
+        res.should.have.status(200);
+        res.should.be.json;
+        res.body.should.be.a('array');
         done();
       });
     });
