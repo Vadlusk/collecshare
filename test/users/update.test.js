@@ -7,7 +7,7 @@ describe('PUT /api/v1/users/:uid', () => {
       config.chai.request(config.app)
         .put('/api/v1/users/1')
         .type('form')
-        .attach('avatar', fs.readFileSync('test/users/test.jpg'), 'test.jpg')
+        .field('username', 'Kyle')
         .end((err, res) => {
           res.should.have.status(200);
           res.should.be.json;
@@ -17,7 +17,7 @@ describe('PUT /api/v1/users/:uid', () => {
           res.body.should.have.property('location');
           res.body.should.have.property('bio');
           res.body.uid.should.equal('1');
-          res.body.username.should.equal('Jill');
+          res.body.username.should.equal('Kyle');
           res.body.location.should.equal('Denver, CO');
           res.body.bio.should.equal('I\'m pretty cool.');
           done();
@@ -27,7 +27,7 @@ describe('PUT /api/v1/users/:uid', () => {
       config.chai.request(config.app)
         .put('/api/v1/users/1')
         .type('form')
-        .attach('avatar', fs.readFileSync('test/users/test.jpg'), 'test.jpg')
+        // .attach('avatar', fs.readFileSync('test/users/test.jpg'), 'test.jpg')
         .field('username', 'Jim')
         .field('location', 'New Dehli')
         .field('bio', 'Awesome')

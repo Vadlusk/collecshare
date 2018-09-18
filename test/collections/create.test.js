@@ -22,7 +22,7 @@ describe('POST /api/v1/collections', () => {
       config.chai.request(config.app)
       .post('/api/v1/collections')
       .type('form')
-      .attach('image', fs.readFileSync('test/collections/test.png'), 'test.png')
+      // .attach('image', fs.readFileSync('test/collections/test.png'), 'test.png')
       .field('uid', '1')
       .field('category', 'comics')
       .field('title', 'New')
