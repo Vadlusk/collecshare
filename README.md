@@ -109,9 +109,26 @@ returns the collection with that id number
 
 updates the specified collection.   
 use the same parameters for updating and creating.   
-the only difference is that no fields are required for updating.
-
+the only difference is that no fields are required for updating.  
 
 `DELETE /api/v1/collections/:id`
 
 deletes the collection with that id number
+
+## Items
+The following endpoints do the same things with items.  
+item objects are always returned thusly:  
+```
+{
+  "id": int,
+  "collection_id": string,
+  "image": string,
+  "value": string,
+  "title": string,
+  "description": string,
+}
+```
+
+`GET /api/v1/items`
+
+returns all the items in the database

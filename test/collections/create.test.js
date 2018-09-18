@@ -19,8 +19,8 @@ describe('POST /api/v1/collections', () => {
     it('with all parameters', done => {
       config.chai.request(config.app)
       .post('/api/v1/collections')
-      .attach('image', 'test/collections/test.png', 'test.png')
       .type('form')
+      .attach('image', 'test/collections/test.png', 'test.png')
       .field('uid', '1')
       .field('category', 'comics')
       .field('title', 'New')
