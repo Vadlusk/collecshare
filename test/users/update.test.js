@@ -5,8 +5,8 @@ describe('PUT /api/v1/users/:uid', () => {
     it('one valid parameter', done => {
       config.chai.request(config.app)
         .put('/api/v1/users/1')
-        .attach('avatar', 'test/users/test.jpg', 'test.jpg')
         .type('form')
+        .attach('avatar', 'test/users/test.jpg', 'test.jpg')
         .end((err, res) => {
           res.should.have.status(200);
           res.should.be.json;
@@ -25,8 +25,8 @@ describe('PUT /api/v1/users/:uid', () => {
     it('all valid parameters', done => {
       config.chai.request(config.app)
         .put('/api/v1/users/1')
-        .attach('avatar', 'test/users/test.jpg', 'test.jpg')
         .type('form')
+        .attach('avatar', 'test/users/test.jpg', 'test.jpg')
         .field('username', 'Jim')
         .field('location', 'New Dehli')
         .field('bio', 'Awesome')
