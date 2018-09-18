@@ -9,7 +9,6 @@ var searchRouter      = require('./routes/api/v1/search');
 var itemsRouter       = require('./routes/api/v1/items');
 var collectionsRouter = require('./routes/api/v1/collections');
 
-
 var app = express();
 
 app.engine('pug', require('pug').__express)

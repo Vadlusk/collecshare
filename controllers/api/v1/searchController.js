@@ -1,8 +1,8 @@
 const AllTables = require('../../../models/AllTables');
 
-const create = (req, res, next) => {
-  AllTables.search(req.body.keyword)
+const index = (req, res, next) => {
+  AllTables.search(req.query['keyword'])
     .then(results => res.json(results.rows));
 };
 
-module.exports = { create };
+module.exports = { index };
