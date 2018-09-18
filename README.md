@@ -22,6 +22,34 @@ To run the local server, type `yarn start`
 
 # Endpoints
 
+## Search
+
+`GET /api/v1/search?keyword=search_term_here`  
+
+This endpoint returns all users and their collections that match the search term
+in this format:  
+
+```
+{
+  "uid": string,
+  "username": string,
+  "avatar": string,
+  "location": string,
+  "bio": string,
+  "collections": [
+    {
+      "id": int,
+      "uid": string,
+      "category": string,
+      "title": string,
+      "description": string,
+      "image": string
+    },
+    ...
+  ]
+}
+```  
+
 ## Users
 The following endpoints represent full CRUD functionality of users. They return either a user object or message that the action was successful.  
 User objects are always returned in the following format:   

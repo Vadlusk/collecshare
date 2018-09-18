@@ -5,6 +5,7 @@ var logger      = require('morgan');
 var cors        = require('cors');
 
 var usersRouter       = require('./routes/api/v1/users');
+var searchRouter      = require('./routes/api/v1/search');
 var itemsRouter       = require('./routes/api/v1/items');
 var collectionsRouter = require('./routes/api/v1/collections');
 
@@ -19,10 +20,10 @@ app.use(express.json({ limit: '5mb' }));
 app.use(express.urlencoded({ limit: '5mb' , extended: false }));
 
 app.use('/avatars', express.static('avatars'));
-
-app.use('/api/v1/users', usersRouter);
 app.use('/api/v1/items', itemsRouter);
 app.use('/api/v1/collections', collectionsRouter);
+app.use('/api/v1/users', usersRouter);
+app.use('/api/v1/search', searchRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
