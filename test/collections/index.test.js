@@ -51,7 +51,7 @@ describe('GET /api/v1/collections', () => {
       });
     });
   });
-  context('should 404 if', () => {
+  context('should still be ok if', () => {
     it('the search param is category and there are none', done => {
       config.database.raw('DELETE FROM collections');
       config.chai.request(config.app)
