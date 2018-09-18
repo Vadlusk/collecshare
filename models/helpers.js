@@ -13,6 +13,11 @@ const sanitizeInfo = (info, type) => {
       break;
     case 'collection':
       if (info.description == undefined) info.description = null;
+      if (info.image == undefined) info.description = 'avatars/books.jpg';
+      return info;
+      break;
+    case 'item':
+      if (info.image == undefined) info.description = 'avatars/book.jpeg';
       return info;
       break;
     default:
