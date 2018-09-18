@@ -1,9 +1,25 @@
 const Item = require('../../../models/Item');
 const helpers = require('../../helpers');
 
-const index = (req, res, next) => {
-  Item.all().
-    then(items => res.json(items));
+const create = (req, res, next) => {
+
 };
 
-module.exports = { index };
+const index = (req, res, next) => {
+  Item.all().
+  then(items => res.json(items));
+};
+
+const show = (req, res, next) => {
+
+};
+
+const update = (req, res, next) => {
+
+};
+
+const destroy = (req, res, next) => {
+
+};
+
+module.exports = { create, index, show, update, destroy };
