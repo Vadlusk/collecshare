@@ -13,13 +13,13 @@ describe('GET /api/v1/items/:id', () => {
         res.body.should.have.property('collection_id');
         res.body.collection_id.should.equal(1)
         res.body.should.have.property('title');
-        res.body.title.should.equal('')
+        res.body.title.should.equal('Cool thing')
         res.body.should.have.property('value');
-        res.body.value.should.equal('')
+        res.body.value.should.equal(0)
         res.body.should.have.property('description');
-        res.body.description.should.equal('')
+        res.body.description.should.equal('I have this.')
         res.body.should.have.property('image');
-        res.body.image.should.equal('')
+        res.body.image.should.equal('avatars/book.jpeg')
         done();
       });
   });
