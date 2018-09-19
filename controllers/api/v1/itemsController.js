@@ -21,6 +21,8 @@ const show = (req, res, next) => {
 };
 
 const update = (req, res, next) => {
+  req.file ? req.body.image = req.file.path : null;
+  if (req.body.value) req.body.value *= 100;
   Item.update(req.body, req.params['id'])
     .then(item => helpers.sendJSON(item, 200, res));
 };
