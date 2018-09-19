@@ -29,9 +29,7 @@ const update = (req, res, next) => {
 
 const destroy = (req, res, next) => {
   Collection.destroy(req.params.id)
-    .then(message => message.rowCount === 1 ?
-      res.json(helpers.createMessage(req.params.id, 'collection')) :
-      res.sendStatus(404));
+  .then(msg => helpers.sendMessage(res, msg, req.params.id, 'collection'));
 };
 
 module.exports = { create, index, show, update, destroy };
