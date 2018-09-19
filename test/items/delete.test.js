@@ -21,4 +21,12 @@ describe('DELETE /api/v1/items/:id', () => {
         done();
       });
   });
+  it('should return 404 if path does not exist', done => {
+    config.chai.request(config.app)
+      .get('/api/v1/zebras')
+      .end((err, res) => {
+        res.should.have.status(404);
+        done();
+      });
+  });
 });
