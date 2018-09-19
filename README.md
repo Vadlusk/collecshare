@@ -6,6 +6,7 @@ This is the backend api.
 ## Versions
 Node `10.9.4`  
 Express `4.16.3`  
+PG `7.4.3`   
 Mocha `5.2.0`  
 Chai `4.1.4`  
 
