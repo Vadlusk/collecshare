@@ -17,6 +17,10 @@ class Item {
   static update(info, id) {
     return helpers.update(info, id, 'items');
   }
+
+  static destroy(id) {
+    return database.raw('DELETE FROM items WHERE id=?', [id]);
+  }
 }
 
 module.exports = Item;

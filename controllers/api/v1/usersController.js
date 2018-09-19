@@ -29,9 +29,7 @@ const update = (req, res, next) => {
 
 const destroy = (req, res, next) => {
   User.destroy(req.params.uid)
-    .then(message => message.rowCount === 1 ?
-      res.json(helpers.createMessage(req.params.uid, 'user')) :
-      res.sendStatus(404));
+    .then(msg => helpers.sendMessage(res, msg, req.params.uid, 'user'));
 };
 
 module.exports = { create, index, show, update, destroy };

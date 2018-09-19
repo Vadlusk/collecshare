@@ -29,7 +29,8 @@ const update = (req, res, next) => {
 };
 
 const destroy = (req, res, next) => {
-
+  Item.destroy(req.params['id'])
+  .then(msg => helpers.sendMessage(res, msg, req.params['id'], 'item'));
 };
 
 module.exports = { create, index, show, update, destroy };

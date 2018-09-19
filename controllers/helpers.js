@@ -9,4 +9,11 @@ const sendJSON = (payload, status, res) => {
   res.sendStatus(404);
 };
 
-module.exports = { createMessage, sendJSON }
+const sendMessage = (res, message, id, type) => {
+  message.rowCount === 1 ?
+    res.json(createMessage(id, type)) :
+    res.sendStatus(404);
+};
+
+
+module.exports = { sendJSON, sendMessage };
