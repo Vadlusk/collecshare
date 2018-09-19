@@ -23,7 +23,7 @@ describe('POST /api/v1/items', () => {
         res.body.value.should.equal(0);
         res.body.should.have.property('description');
         res.body.should.have.property('image');
-        res.body.image.should.equal('avatars/book.jpg');
+        res.body.image.should.equal('avatars/book.jpeg');
         done();
       });
     });
