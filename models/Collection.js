@@ -13,19 +13,11 @@ class Collection {
   }
 
   static find(id) {
-    let query = `SELECT c.*,
-                 COALESCE(json_agg(i.* ORDER BY i.id)
-                 FILTER (WHERE i.id IS NOT NULL), '[]') AS items
-                 FROM collections c
-                 LEFT JOIN items i ON i.collection_id = c.id
-                 WHERE c.id=?
-                 GROUP BY c.id`
-    return database.raw(query, [id]);
+    return helpers.findWithChildren(id, 'collections', 'items');
   }
 
   static update(info, id) {
-    let query = 'UPDATE collections SET ' + helpers.set(info) + ' WHERE uid = ? RETURNING *'
-    return database.raw(query, [id]);
+    return helpers.update(info, id, 'collections');
   }
 
   static destroy(id) {

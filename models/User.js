@@ -3,9 +3,7 @@ const helpers  = require('./helpers');
 
 class User {
   static create(info) {
-    helpers.sanitizeInfo(info, 'user');
-    let q = 'INSERT INTO users (uid, username, avatar, location, bio) VALUES (?, ?, ?, ?, ?) RETURNING *'
-    return database.raw(q, [info.uid, info.username, info.avatar, info.location, info.bio]);
+    return helpers.create(info, 'users');
   }
 
   static all() {
@@ -17,8 +15,7 @@ class User {
   }
 
   static update(info, uid) {
-    let query = 'UPDATE users SET ' + helpers.set(info) + ' WHERE uid = ? RETURNING *'
-    return database.raw(query, [uid]);
+    return helpers.update(info, uid, 'users');
   }
 
   static destroy(uid) {
