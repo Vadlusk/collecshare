@@ -1,3 +1,21 @@
+const database = require('../db/config');
+
+const create = (info, table) => {
+  console.log(createQuery(info, table))
+  return database.raw(
+    createQuery(info, table),
+    [...Object.values(info)]
+  );
+};
+
+const createQuery = (info, table) => {
+  return 'INSERT INTO ' + table + ' (' + Object.keys(info).join(', ') + ') ' + values(Object.keys(info).length) + 'RETURNING *'
+};
+
+const values = num => {
+  return 'VALUES (' + '?,'.repeat(num).slice(0, -1) + ') ';
+};
+
 const set = info => {
   const reducer = (result, val) => result + `${val[0]}='${val[1]}', `;
   return Object.entries(info).reduce(reducer, '').slice(0, -2);
@@ -16,13 +34,9 @@ const sanitizeInfo = (info, type) => {
       if (info.image == undefined) info.description = 'avatars/books.jpg';
       return info;
       break;
-    case 'item':
-      if (info.image == undefined) info.description = 'avatars/book.jpeg';
-      return info;
-      break;
     default:
       return info;
   }
 };
 
-module.exports = { set, sanitizeInfo }
+module.exports = { create, set, sanitizeInfo };
