@@ -11,6 +11,20 @@ describe('POST /api/v1/items', () => {
       .field('title', 'Babe Ruth rookie')
       .end((err, res) => {
         res.should.have.status(201);
+        res.should.be.json;
+        res.body.should.be.a('object');
+        res.body.should.have.property('id');
+        res.body.id.should.equal('');
+        res.body.should.have.property('collection_id');
+        res.body.collection_id.should.equal('');
+        res.body.should.have.property('title');
+        res.body.title.should.equal('');
+        res.body.should.have.property('value');
+        res.body.value.should.equal('');
+        res.body.should.have.property('description');
+        res.body.description.should.equal('');
+        res.body.should.have.property('image');
+        res.body.image.should.equal('');
         done();
       });
     });
@@ -25,6 +39,20 @@ describe('POST /api/v1/items', () => {
       .field('description', 'Super rare')
       .end((err, res) => {
         res.should.have.status(201);
+        res.should.be.json;
+        res.body.should.be.a('object');
+        res.body.should.have.property('id');
+        res.body.id.should.equal('');
+        res.body.should.have.property('collection_id');
+        res.body.collection_id.should.equal('');
+        res.body.should.have.property('title');
+        res.body.title.should.equal('');
+        res.body.should.have.property('value');
+        res.body.value.should.equal('');
+        res.body.should.have.property('description');
+        res.body.description.should.equal('');
+        res.body.should.have.property('image');
+        res.body.image.should.equal('');
         done();
       });
     });
