@@ -9,6 +9,10 @@ class Item {
   static all() {
     return database.raw('SELECT * FROM items');
   }
+
+  static update(info, id) {
+    return helpers.update(info, id, 'items');
+  }
 }
 
 module.exports = Item;
