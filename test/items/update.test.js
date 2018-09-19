@@ -13,7 +13,7 @@ describe('PUT /api/v1/items/:uid', () => {
           res.should.be.json;
           res.body.should.be.a('object');
           res.body.should.have.property('id');
-          res.body.id.should.equal(21);
+          res.body.id.should.equal(1);
           res.body.should.have.property('collection_id');
           res.body.collection_id.should.equal(1);
           res.body.should.have.property('title');

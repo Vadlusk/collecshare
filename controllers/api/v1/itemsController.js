@@ -13,8 +13,7 @@ const create = (req, res, next) => {
 };
 
 const index = (req, res, next) => {
-  Item.all().
-    then(items => res.json(items.rows));
+  Item.all().then(items => res.json(items.rows));
 };
 
 const show = (req, res, next) => {
@@ -22,7 +21,8 @@ const show = (req, res, next) => {
 };
 
 const update = (req, res, next) => {
-
+  Item.update(req.body, req.params['id'])
+    .then(item => helpers.sendJSON(item, 200, res));
 };
 
 const destroy = (req, res, next) => {
