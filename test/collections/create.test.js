@@ -1,6 +1,6 @@
-var config     = require('../test_helper');
-var helpers    = require('./collectionHelpers');
-var fs = require('fs');
+var config  = require('../test_helper');
+var helpers = require('./collectionHelpers');
+var fs      = require('fs');
 
 describe('POST /api/v1/collections', () => {
   context('should create a collection', () => {
@@ -13,7 +13,7 @@ describe('POST /api/v1/collections', () => {
       .field('title', 'New')
       .end((err, res) => {
         helpers.collectionAssertions(res, 201, 21, '1',
-          'comics', 'New', null);
+          'comics', 'New', 'avatars/books.jpg');
         done();
       });
     });
