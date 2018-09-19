@@ -10,6 +10,10 @@ class Item {
     return database.raw('SELECT * FROM items');
   }
 
+  static find(id) {
+    return database.raw('SELECT * FROM items WHERE id=?', [id]);
+  }
+
   static update(info, id) {
     return helpers.update(info, id, 'items');
   }

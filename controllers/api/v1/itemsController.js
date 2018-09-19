@@ -17,7 +17,8 @@ const index = (req, res, next) => {
 };
 
 const show = (req, res, next) => {
-
+  Item.find(req.params['id'])
+    .then(item => helpers.sendJSON(item, 200, res));
 };
 
 const update = (req, res, next) => {
