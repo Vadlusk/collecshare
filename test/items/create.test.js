@@ -97,6 +97,16 @@ describe('POST /api/v1/items', () => {
         done();
       });
     });
+    it('the right type of file', done => {
+      config.chai.request(config.app)
+      .post('/api/v1/items')
+      .type('form')
+      .attach('image', fs.readFileSync('test/items/wrong_type.pdf'), 'wrong_type.pdf')
+      .end((err, res) => {
+        createItemErrorAssertions(res);
+        done();
+      });
+    });
   });
 });
 
