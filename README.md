@@ -3,13 +3,13 @@ is a social app for collectors of all things.
 Manage, share, buy, sell or trade your valuables on a global scale.   
 This is the backend api.  
 
-# Versions
+## Versions
 Node `10.9.4`  
 Express `4.16.3`  
 Mocha `5.2.0`  
 Chai `4.1.4`  
 
-# Setup
+## Setup
 1. Clone or fork this repo.
 2. Move into the directory.
 3. `npm i`
@@ -19,9 +19,9 @@ Chai `4.1.4`
 To run the test suite, type `yarn test`   
 To run the local server, type `yarn start`
 
-# Endpoints
+## Endpoints
 
-## Search
+### Search
 
 `GET /api/v1/search?keyword=search_term_here`  
 
@@ -49,7 +49,7 @@ in this format:
 }
 ```  
 
-## Users
+### Users
 The following endpoints represent full CRUD functionality of users. They return either a user object or message that the action was successful.  
 User objects are always returned in the following format:   
 ```
@@ -93,7 +93,7 @@ the only difference is that no fields are required for updating.
 
 deletes the user with that uid number
 
-## Collections
+### Collections
 The following endpoints do the same things with collections.  
 Collection objects are always returned thusly:   
 ```
@@ -142,7 +142,7 @@ the only difference is that no fields are required for updating.
 
 deletes the collection with that id number
 
-## Items
+### Items
 The following endpoints do the same things with items.  
 item objects are always returned thusly:  
 ```
@@ -156,6 +156,30 @@ item objects are always returned thusly:
 }
 ```
 
+`POST /api/v1/items/`  
+
+creates an item with the following parameters:  
+```
+{
+  "collection_id": string(required),
+  "title": string(required),
+  "value": int(optional),
+  "description": string(optional)
+  "image": .jpeg/.png(optional)
+}
+```
+
 `GET /api/v1/items`
 
 returns all the items in the database
+
+`GET /api/v1/items/:id`
+
+returns the item with that id number
+
+
+`PUT /api/v1/items/:id`
+
+updates the specified item.   
+use the same parameters for updating and creating.   
+the only difference is that no fields are required for updating.  
