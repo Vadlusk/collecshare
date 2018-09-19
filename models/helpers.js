@@ -12,8 +12,7 @@ const findWithChildren = (id, parent, child) => {
              ` LEFT JOIN ` + child + ` ON ` + child + `.` +
                 parent.slice(0, -1) + `_id = ` + parent + `.id
                WHERE ` + parent + `.id=?
-               GROUP BY ` + parent + `.id`
-  console.log(query)
+               GROUP BY ` + parent + `.id`;
   return database.raw(query, [id]);
 };
 
@@ -23,15 +22,15 @@ const update = (info, id, table) => {
 
 const createQuery = (info, table) => {
   return 'INSERT INTO ' + table + ' (' + Object.keys(info).join(', ') +
-    ') ' + values(Object.keys(info).length) + 'RETURNING *'
+    ') ' + values(Object.keys(info).length) + 'RETURNING *';
 };
 
 const updateQuery = (info, table) => {
   let id;
   table == 'users' ? id = 'uid' : id = 'id';
   return 'UPDATE ' + table + ' SET ' + set(info) + ' WHERE ' +
-    id + ' = ? RETURNING *'
-}
+    id + ' = ? RETURNING *';
+};
 
 const values = num => {
   return 'VALUES (' + '?,'.repeat(num).slice(0, -1) + ') ';
