@@ -29,26 +29,26 @@ exports.seed = function(knex, Promise) {
     })
     .then(() => {
       return knex('collections').insert([
-        { uid: '1', category: 'comics', title: 'My Comics', description: comicDesc },
-        { uid: '1', category: 'cards', title: 'My cards', description: cardDesc },
-        { uid: '1', category: 'coins', title: 'My coins', description: coinDesc },
-        { uid: '2', category: 'other', title: 'Rocks', description: genericDesc },
-        { uid: '2', category: 'comics', title: 'Marvel', description: comicDesc },
-        { uid: '2', category: 'comics', title: 'DC', description: comicDesc },
-        { uid: '2', category: 'coins', title: 'Pennies', description: coinDesc },
-        { uid: '3', category: 'vinyl', title: '80\'s', description: vinylDesc },
-        { uid: '4', category: 'vinyl', title: 'Parents old vinyl', description: vinylDesc },
-        { uid: '4', category: 'cards', title: 'My Collection', description: cardDesc },
-        { uid: '5', category: 'comics', title: 'My Collection', description: comicDesc },
-        { uid: '5', category: 'coins', title: 'My Collection', description: coinDesc },
-        { uid: '5', category: 'cards', title: 'My Collection', description: cardDesc },
-        { uid: '5', category: 'vinyl', title: 'My Collection', description: vinylDesc },
-        { uid: '5', category: 'comics', title: 'My Collection', description: comicDesc },
-        { uid: '5', category: 'other', title: 'Video Games', description: genericDesc },
-        { uid: '5', category: 'comics', title: 'My Collection', description: comicDesc },
-        { uid: '5', category: 'vinyl', title: 'My Collection', description: vinylDesc },
-        { uid: '5', category: 'coins', title: 'My Collection', description: coinDesc },
-        { uid: '6', category: 'comics', title: 'My Collection', description: comicDesc }
+        { uid: '1', category: 'comics', title: 'My Comics', description: comicDesc, image: 'avatars/.jpg' },
+        { uid: '1', category: 'cards', title: 'My cards', description: cardDesc, image: 'avatars/.jpg'  },
+        { uid: '1', category: 'coins', title: 'My coins', description: coinDesc, image: 'avatars/.jpg'  },
+        { uid: '2', category: 'other', title: 'Rocks', description: genericDesc, image: 'avatars/.jpg'  },
+        { uid: '2', category: 'comics', title: 'Marvel', description: comicDesc, image: 'avatars/.jpg'  },
+        { uid: '2', category: 'comics', title: 'DC', description: comicDesc, image: 'avatars/.jpg'  },
+        { uid: '2', category: 'coins', title: 'Silver', description: coinDesc, image: 'avatars/coins2.jpg'  },
+        { uid: '3', category: 'vinyl', title: '80\'s', description: vinylDesc, image: 'avatars/.jpg'  },
+        { uid: '4', category: 'vinyl', title: 'Parents old vinyl', description: vinylDesc, image: 'avatars/.jpg'  },
+        { uid: '4', category: 'cards', title: 'My Collection', description: cardDesc, image: 'avatars/.jpg'  },
+        { uid: '5', category: 'comics', title: 'My Collection', description: comicDesc, image: 'avatars/.jpg'  },
+        { uid: '5', category: 'coins', title: 'My Collection', description: coinDesc, image: 'avatars/.jpg'  },
+        { uid: '5', category: 'cards', title: 'My Collection', description: cardDesc, image: 'avatars/.jpg'  },
+        { uid: '5', category: 'vinyl', title: 'My Collection', description: vinylDesc, image: 'avatars/.jpg'  },
+        { uid: '5', category: 'comics', title: 'My Collection', description: comicDesc, image: 'avatars/.jpg'  },
+        { uid: '5', category: 'other', title: 'Video Games', description: genericDesc, image: 'avatars/.jpg'  },
+        { uid: '5', category: 'comics', title: 'My Collection', description: comicDesc, image: 'avatars/.jpg'  },
+        { uid: '5', category: 'vinyl', title: 'My Collection', description: vinylDesc, image: 'avatars/.jpg'  },
+        { uid: '5', category: 'coins', title: 'My Collection', description: coinDesc, image: 'avatars/.jpg'  },
+        { uid: '6', category: 'comics', title: 'My Collection', description: comicDesc, image: 'avatars/.jpg'  }
       ]);
     })
     .then(() => {
