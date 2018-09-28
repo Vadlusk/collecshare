@@ -26,6 +26,15 @@ app.use('/api/v1/collections', collectionsRouter);
 app.use('/api/v1/users', usersRouter);
 app.use('/api/v1/search', searchRouter);
 
+const requireHTTPS = (req, res, next) => {
+  if (req.headers['x-forwarded-proto'] !== 'https') {
+    return res.redirect('https://' + req.get('host') + req.url);
+  }
+    next();
+};
+
+if (process.env.NODE_ENV === 'production') { app.use(requireHTTPS); }
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
