@@ -20,6 +20,7 @@ app.use(express.json({ limit: '5mb' }));
 app.use(express.urlencoded({ limit: '5mb' , extended: false }));
 
 app.use('/avatars', express.static('avatars'));
+app.use('/backgrounds', express.static('backgrounds'));
 app.use('/api/v1/items', itemsRouter);
 app.use('/api/v1/collections', collectionsRouter);
 app.use('/api/v1/users', usersRouter);
