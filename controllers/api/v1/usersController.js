@@ -1,6 +1,8 @@
 const User    = require('../../../models/User');
 const helpers = require('../../helpers');
 const fetch   = require('node-fetch');
+var FormData  = require('form-data');
+var fs        = require('fs');
 
 const create = (req, res, next) => {
   if (!req.body.username || !req.body.uid) {
@@ -25,10 +27,18 @@ const show = (req, res, next) => {
 const update = (req, res, next) => {
   // if (req.file) req.body.avatar = req.file.path;
   if (req.file) {
-    
+    var body = new FormData();
+    body.append('image', fs.createReadStream(req.file.path));
+    fetch('https://api.imgur.com/3/image', {
+      method: 'POST',
+      headers: { 'Authorization': `Client-ID ${process.env.IMGUR_CLIENT_ID}` },
+      body
+    })
+      .then(res => res.json())
+      .then(json => console.log(json));
   };
-  User.update(req.body, req.params.uid)
-    .then(user => helpers.sendJSON(user, 200, res));
+  // User.update(req.body, req.params.uid)
+  //   .then(user => helpers.sendJSON(user, 200, res));
 };
 
 const destroy = (req, res, next) => {
