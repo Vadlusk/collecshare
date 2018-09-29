@@ -15,7 +15,7 @@ describe('POST /api/v1/users', () => {
         res.body.should.have.property('username');
         res.body.username.should.equal('New user');
         res.body.should.have.property('avatar');
-        res.body.avatar.should.equal('avatars/avatar.png');
+        res.body.avatar.should.equal('backgrounds/avatar.png');
         res.body.should.have.property('location');
         res.body.should.have.property('bio');
         done();

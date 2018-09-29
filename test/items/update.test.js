@@ -22,7 +22,7 @@ describe('PUT /api/v1/items/:uid', () => {
           res.body.value.should.equal(0);
           res.body.should.have.property('description');
           res.body.should.have.property('image');
-          res.body.image.should.equal('avatars/book.jpeg');
+          res.body.image.should.equal('backgrounds/book.jpeg');
           done();
         });
     });
@@ -50,7 +50,7 @@ describe('PUT /api/v1/items/:uid', () => {
           res.body.should.have.property('description');
           res.body.description.should.equal('Bent');
           res.body.should.have.property('image');
-          res.body.image.should.not.equal('avatars/book.jpeg');
+          res.body.image.should.not.equal('backgrounds/book.jpeg');
           done();
         });
     });

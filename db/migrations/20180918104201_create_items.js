@@ -8,7 +8,8 @@ exports.up = function(knex, Promise) {
     description TEXT,
     image TEXT DEFAULT 'backgrounds/book.jpeg',
     image_delete TEXT,
-    details JSONB
+    details JSONB,
+    public BOOLEAN DEFAULT TRUE
   )`);
 };
 
