@@ -25,7 +25,6 @@ const show = (req, res, next) => {
 };
 
 const update = (req, res, next) => {
-  // if (req.file) req.body.avatar = req.file.path;
   if (req.file) {
     var body = new FormData();
     body.append('image', fs.createReadStream(req.file.path));
@@ -35,10 +34,14 @@ const update = (req, res, next) => {
       body
     })
       .then(res => res.json())
-      .then(json => console.log(json));
+      .then(json => {
+        req.body.avatar = json.data.link;
+        console.log(json);
+        // req.body.avatarDelete = json.data.deletehash;
+      })
+      .then(() => User.update(req.body, req.params.uid))
+      .then(user => helpers.sendJSON(user, 200, res));
   };
-  // User.update(req.body, req.params.uid)
-  //   .then(user => helpers.sendJSON(user, 200, res));
 };
 
 const destroy = (req, res, next) => {
