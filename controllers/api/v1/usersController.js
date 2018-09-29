@@ -27,7 +27,7 @@ const show = (req, res, next) => {
 const update = (req, res, next) => {
   if (req.file) {
     var body = new FormData();
-    body.append('image', fs.createReadStream(req.file.path));
+    body.append('image', req.file.buffer);
     fetch('https://api.imgur.com/3/image', {
       method: 'POST',
       headers: { 'Authorization': `Client-ID ${process.env.IMGUR_CLIENT_ID}` },
@@ -36,7 +36,6 @@ const update = (req, res, next) => {
       .then(res => res.json())
       .then(json => {
         req.body.avatar = json.data.link;
-        console.log(json);
         // req.body.avatarDelete = json.data.deletehash;
       })
       .then(() => User.update(req.body, req.params.uid))
