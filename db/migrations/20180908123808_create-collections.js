@@ -6,7 +6,8 @@ exports.up = function(knex, Promise) {
     category TEXT NOT NULL,
     title TEXT NOT NULL,
     description TEXT,
-    image TEXT DEFAULT 'avatars/books.jpg'
+    image TEXT DEFAULT 'backgrounds/books.jpg',
+    image_delete TEXT
   )`);
 };
 

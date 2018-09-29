@@ -25,27 +25,32 @@ const show = (req, res, next) => {
 };
 
 const update = (req, res, next) => {
-  if (req.file) {
-    var body = new FormData();
-    body.append('image', req.file.buffer);
-    fetch('https://api.imgur.com/3/image', {
-      method: 'POST',
-      headers: { 'Authorization': `Client-ID ${process.env.IMGUR_CLIENT_ID}` },
-      body
-    })
-      .then(res => res.json())
-      .then(json => {
-        req.body.avatar = json.data.link;
-        // req.body.avatarDelete = json.data.deletehash;
-      })
-      .then(() => User.update(req.body, req.params.uid))
-      .then(user => helpers.sendJSON(user, 200, res));
-  };
+  req.file ? imgurPost(req, res).then(() => userUpdate(req, res)) : userUpdate(req, res);
 };
 
 const destroy = (req, res, next) => {
   User.destroy(req.params.uid)
     .then(msg => helpers.sendMessage(res, msg, req.params.uid, 'user'));
+};
+
+const userUpdate = (req, res) => {
+  User.update(req.body, req.params.uid)
+    .then(user => helpers.sendJSON(user, 200, res));
+};
+
+const imgurPost = (req, res) => {
+  var body = new FormData();
+  body.append('image', req.file.buffer);
+  return fetch('https://api.imgur.com/3/image', {
+    method: 'POST',
+    headers: { 'Authorization': `Client-ID ${process.env.IMGUR_CLIENT_ID}` },
+    body
+  })
+    .then(res => res.json())
+    .then(json => {
+      req.body.avatar = json.data.link;
+      // req.body.avatarDelete = json.data.deletehash;
+    });
 };
 
 module.exports = { create, index, show, update, destroy };
