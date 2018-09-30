@@ -23,6 +23,7 @@ const show = (req, res, next) => {
 };
 
 const update = (req, res, next) => {
+  req.file ? req.body.image = req.file.path : null;
   Collection.update(req.body, req.params.id)
     .then(collection => helpers.sendJSON(collection, 200, res));
 };
