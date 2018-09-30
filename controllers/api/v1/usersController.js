@@ -1,8 +1,6 @@
+const imgur   = require('../../../services/imgur');
 const User    = require('../../../models/User');
 const helpers = require('../../helpers');
-const fetch   = require('node-fetch');
-var FormData  = require('form-data');
-var fs        = require('fs');
 
 const create = (req, res, next) => {
   if (!req.body.username || !req.body.uid) {
@@ -25,7 +23,7 @@ const show = (req, res, next) => {
 };
 
 const update = (req, res, next) => {
-  req.file ? imgurPost(req, res).then(() => userUpdate(req, res)) : userUpdate(req, res);
+  req.file ? imgurPost(req).then(() => userUpdate(req, res)) : userUpdate(req, res);
 };
 
 const destroy = (req, res, next) => {
@@ -38,18 +36,11 @@ const userUpdate = (req, res) => {
     .then(user => helpers.sendJSON(user, 200, res));
 };
 
-const imgurPost = (req, res) => {
-  var body = new FormData();
-  body.append('image', req.file.buffer);
-  return fetch('https://api.imgur.com/3/image', {
-    method: 'POST',
-    headers: { 'Authorization': `Client-ID ${process.env.IMGUR_CLIENT_ID}` },
-    body
-  })
-    .then(res => res.json())
+const imgurPost = req => {
+  return imgur.post(req)
     .then(json => {
       req.body.avatar = json.data.link;
-      // req.body.avatarDelete = json.data.deletehash;
+      req.body.avatar_delete = json.data.deletehash;
     });
 };
 
