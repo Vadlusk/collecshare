@@ -1,26 +1,31 @@
 var config  = require('../test_helper');
 var helpers = require('./collectionHelpers');
-
+var fs      = require('fs');
 
 describe('PUT /api/v1/collections/:id', () => {
   context('should edit a collection with', () => {
     it('one valid parameter', done => {
       config.chai.request(config.app)
         .put('/api/v1/collections/1')
-        .send({title: 'Title'})
+        .type('form')
+        .field('category', 'coins')
         .end((err, res) => {
           helpers.collectionAssertions(res, 200, 1, '1',
-            'comics', 'Title', null);
+            'coins', 'Title', null);
           done();
         });
     });
     it('all valid parameters', done => {
       config.chai.request(config.app)
         .put('/api/v1/collections/1')
-        .send({ title: 'New', category: 'Comics', description: 'Cool' })
+        .type('form')
+        .field('category', 'coins')
+        .field('title', 'coins')
+        .field('description', 'coins')
+        .attach('image', fs.readFileSync('test/collections/test.png'), 'test.png')
         .end((err, res) => {
           helpers.collectionAssertions(res, 200, 1, '1',
-            'Comics', 'New', 'Cool');
+            'coins', 'coins', 'coins');
           done();
         });
     });
