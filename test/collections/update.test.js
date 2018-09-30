@@ -11,7 +11,7 @@ describe('PUT /api/v1/collections/:id', () => {
         .field('category', 'coins')
         .end((err, res) => {
           helpers.collectionAssertions(res, 200, 1, '1',
-            'coins', 'Title', null);
+            'coins', 'My Collection', null);
           done();
         });
     });
