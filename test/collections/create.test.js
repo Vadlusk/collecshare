@@ -13,7 +13,7 @@ describe('POST /api/v1/collections', () => {
       .field('title', 'New')
       .end((err, res) => {
         helpers.collectionAssertions(res, 201, 21, '1',
-          'comics', 'New', 'avatars/books.jpg');
+          'comics', 'New', 'backgrounds/books.jpg');
         done();
       });
     });

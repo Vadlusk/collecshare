@@ -1,3 +1,4 @@
+const imgur   = require('../../../services/imgur');
 const User    = require('../../../models/User');
 const helpers = require('../../helpers');
 
@@ -22,9 +23,9 @@ const show = (req, res, next) => {
 };
 
 const update = (req, res, next) => {
-  if (req.file) req.body.avatar = req.file.path;
+  helpers.avatarCheck(req);
   User.update(req.body, req.params.uid)
-    .then(user => helpers.sendJSON(user, 200, res));
+  .then(user => helpers.sendJSON(user, 200, res));
 };
 
 const destroy = (req, res, next) => {

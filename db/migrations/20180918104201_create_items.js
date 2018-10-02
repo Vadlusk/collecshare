@@ -4,9 +4,12 @@ exports.up = function(knex, Promise) {
     id SERIAL PRIMARY KEY NOT NULL,
     collection_id INT REFERENCES collections ON DELETE CASCADE ON UPDATE CASCADE,
     title TEXT NOT NULL,
-    value INT DEFAULT 0,
+    value REAL DEFAULT 0,
     description TEXT,
-    image TEXT DEFAULT 'avatars/book.jpeg'
+    image TEXT DEFAULT 'backgrounds/book.jpeg',
+    image_delete TEXT,
+    details JSONB,
+    public BOOLEAN DEFAULT TRUE
   )`);
 };
 
