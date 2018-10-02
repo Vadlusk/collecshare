@@ -1,3 +1,5 @@
+const imgur = require('../services/imgur');
+
 const createMessage = (id, type) => {
   let message = { message: `Successfully deleted ${type} ${id}` };
   return message;
@@ -15,5 +17,13 @@ const sendMessage = (res, message, id, type) => {
     res.sendStatus(404);
 };
 
+const imageCheck = req => {
+  if (req.file) {
+    imgur.post(req).then(json => {
+      req.body.image = json.data.link;
+      req.body.image_delete = json.data.deletehash;
+    })
+  }
+};
 
-module.exports = { sendJSON, sendMessage };
+module.exports = { sendJSON, sendMessage, imageCheck };
