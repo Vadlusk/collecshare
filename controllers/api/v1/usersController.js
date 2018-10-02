@@ -24,6 +24,7 @@ const show = (req, res, next) => {
 
 const update = (req, res, next) => {
   helpers.avatarCheck(req);
+  console.log(req.body);
   User.update(req.body, req.params.uid)
   .then(user => helpers.sendJSON(user, 200, res));
 };
