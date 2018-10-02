@@ -26,4 +26,13 @@ const imageCheck = req => {
   }
 };
 
-module.exports = { sendJSON, sendMessage, imageCheck };
+const avatarCheck = req => {
+  if (req.file) {
+    imgur.post(req).then(json => {
+      req.body.avatar = json.data.link;
+      req.body.avatar_delete = json.data.deletehash;
+    })
+  }
+};
+
+module.exports = { sendJSON, sendMessage, imageCheck, avatarCheck };
