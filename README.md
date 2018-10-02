@@ -1,18 +1,25 @@
-# Collecshare [![CircleCI](https://circleci.com/gh/Vadlusk/collecshare/tree/master.svg?style=svg)](https://circleci.com/gh/Vadlusk/collecshare/tree/master)   
+# [Collecshare](https://collecshareapp.herokuapp.com) [![CircleCI](https://circleci.com/gh/Vadlusk/collecshare/tree/master.svg?style=svg)](https://circleci.com/gh/Vadlusk/collecshare/tree/master)   
 is a social app for collectors of all things.  
-Manage, share, buy, sell or trade your valuables on a global scale.   
-This is the backend api.  
+This is the backend api.  You can visit the [frontend repo here](https://github.com/dsdunn/collecshare), the [deployed backend here](http://collecshare.herokuapp.com/api/v1/collections), and the [deployed frontend here](https://collecshareapp.herokuapp.com).
+
+## Authors
+
+* **David Starr Dunn** - *Initial work* - [@dsdunn](https://github.com/dsdunn)
+* **Spenser Leighton** - *Initial work* - [@spenserleighton1](https://github.com/spenserleighton1)
+* **Adam Lusk** - *Initial work* - [@Vadlusk](https://github.com/vadlusk)
 
 ## Versions
-Node `10.9.4`  
-Express `4.16.3`  
-PG `7.4.3`   
-Mocha `5.2.0`  
-Chai `4.1.4`  
+
+[Node](https://nodejs.org/en/) `10.9.4`  
+[Express](http://expressjs.com/) `4.16.3`  
+[PG](https://www.postgresql.org/) `7.4.3`   
+[Mocha](https://mochajs.org/) `5.2.0`  
+[Chai](https://www.chaijs.com/) `4.1.4`  
 
 ## Setup
-1. Clone or fork this repo.
-2. Move into the directory.
+
+1. `git clone git@github.com:Vadlusk/collecshare.git`
+2. `cd collecshare`
 3. `npm i`
 4. `createdb collecshare_dev && createdb collecshare_test`
 5. `knex migrate:latest && knex migrate:latest --env test`
@@ -58,6 +65,7 @@ User objects are always returned in the following format:
   "uid": string,
   "username": string,
   "avatar": string,
+  "avatar_delete": string,
   "location": string,
   "bio": string
 }
@@ -104,7 +112,8 @@ Collection objects are always returned thusly:
   "category": string,
   "title": string,
   "description": string,
-  "image": string
+  "image": string,
+  "image_delete": string
 }
 ```
 
@@ -150,12 +159,16 @@ item objects are always returned thusly:
 {
   "id": int,
   "collection_id": string,
-  "image": string,
-  "value": string,
   "title": string,
+  "value": string,
   "description": string,
+  "image": string,
+  "image_delete": string,
+  "details": object,
+  "public": boolean
 }
 ```
+the details field is an object of whatever additional details you wish to provide and are capable of being different for every item.  
 
 `POST /api/v1/items/`  
 
@@ -166,7 +179,9 @@ creates an item with the following parameters:
   "title": string(required),
   "value": int(optional),
   "description": string(optional)
-  "image": .jpeg/.png(optional)
+  "image": .jpeg/.png(optional),
+  "details": object(optional),
+  "public": boolean(optional)
 }
 ```
 
