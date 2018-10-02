@@ -2,13 +2,15 @@ const Item    = require('../../../models/Item');
 const helpers = require('../../helpers');
 
 const create = (req, res, next) => {
-  req = helpers.imageCheck(req);
-  if (!req.body.collection_id || !req.body.title) {
-    let message = { 'error': 'collection id and title required' };
-    res.status(400).json(message);
-  } else {
-    Item.create(req.body)
-    .then(item => helpers.sendJSON(item, 201, res));
+  helpers.imageCheck(req)
+  .then(() => {
+    if (!req.body.collection_id || !req.body.title) {
+      let message = { 'error': 'collection id and title required' };
+      res.status(400).json(message);
+    } else {
+      Item.create(req.body)
+      .then(item => helpers.sendJSON(item, 201, res));
+    }
   }
 };
 
@@ -22,9 +24,9 @@ const show = (req, res, next) => {
 };
 
 const update = (req, res, next) => {
-  req = helpers.imageCheck(req);
   if (req.body.value) req.body.value *= 100;
-  Item.update(req.body, req.params.id)
+  helpers.imageCheck(req)
+    .then(() => Item.update(req.body, req.params.id))
     .then(item => helpers.sendJSON(item, 200, res));
 };
 

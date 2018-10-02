@@ -3,14 +3,16 @@ const imgur      = require('../../../services/imgur');
 const helpers    = require('../../helpers');
 
 const create = (req, res, next) => {
-  req = helpers.imageCheck(req);
-  if (!req.body.uid || !req.body.category || !req.body.title) {
-    let message = { 'error': 'uid, category, title required' };
-    res.status(400).json(message);
-  } else {
-    Collection.create(req.body)
-    .then(collection => helpers.sendJSON(collection, 201, res));
-  }
+  helpers.imageCheck(req)
+    .then(() => {
+      if (!req.body.uid || !req.body.category || !req.body.title) {
+        let message = { 'error': 'uid, category, title required' };
+        res.status(400).json(message);
+      } else {
+        Collection.create(req.body)
+        .then(collection => helpers.sendJSON(collection, 201, res));
+      }
+    }
 };
 
 const index = (req, res, next) => {
@@ -24,8 +26,8 @@ const show = (req, res, next) => {
 };
 
 const update = (req, res, next) => {
-  req = helpers.imageCheck(req);
-  Collection.update(req.body, req.params.id)
+  helpers.imageCheck(req)
+    .then(() => Collection.update(req.body, req.params.id))
     .then(collection => helpers.sendJSON(collection, 200, res));
 };
 
