@@ -23,8 +23,8 @@ const imageCheck = req => {
       req.body.image = json.data.link;
       req.body.image_delete = json.data.deletehash;
     })
+    return req
   }
-  return req
 };
 
 const avatarCheck = req => {
@@ -33,8 +33,8 @@ const avatarCheck = req => {
       req.body.avatar = json.data.link;
       req.body.avatar_delete = json.data.deletehash;
     })
+    return req
   }
-  return req
 };
 
 module.exports = { sendJSON, sendMessage, imageCheck, avatarCheck };
