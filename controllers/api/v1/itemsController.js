@@ -10,7 +10,7 @@ const create = (req, res, next) => {
     } else {
       Item.create(req.body)
       .then(item => helpers.sendJSON(item, 201, res));
-    }
+    });
   }
 };
 
