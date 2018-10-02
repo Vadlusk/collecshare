@@ -23,7 +23,7 @@ const show = (req, res, next) => {
 };
 
 const update = (req, res, next) => {
-  helpers.avatarCheck(req);
+  req = helpers.avatarCheck(req);
   console.log('ctlr, after imgur', req.body);
   User.update(req.body, req.params.uid)
   .then(user => helpers.sendJSON(user, 200, res));

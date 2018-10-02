@@ -3,7 +3,7 @@ const imgur      = require('../../../services/imgur');
 const helpers    = require('../../helpers');
 
 const create = (req, res, next) => {
-  helpers.imageCheck(req);
+  req = helpers.imageCheck(req);
   if (!req.body.uid || !req.body.category || !req.body.title) {
     let message = { 'error': 'uid, category, title required' };
     res.status(400).json(message);
@@ -24,7 +24,7 @@ const show = (req, res, next) => {
 };
 
 const update = (req, res, next) => {
-  helpers.imageCheck(req);
+  req = helpers.imageCheck(req);
   Collection.update(req.body, req.params.id)
     .then(collection => helpers.sendJSON(collection, 200, res));
 };
