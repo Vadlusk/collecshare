@@ -29,8 +29,10 @@ const imageCheck = req => {
 const avatarCheck = req => {
   if (req.file) {
     return imgur.post(req).then(json => {
+      console.log('after imgur.post', json);
       req.body.avatar = json.data.link;
       req.body.avatar_delete = json.data.deletehash;
+      console.log(req.body);
     })
   }
 };

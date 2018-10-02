@@ -23,8 +23,6 @@ const show = (req, res, next) => {
 };
 
 const update = (req, res, next) => {
-  console.log('ctlr', req.file);
-  console.log('ctlr', req.file.buffer);
   helpers.avatarCheck(req);
   console.log('ctlr, after imgur', req.body);
   User.update(req.body, req.params.uid)
