@@ -7,8 +7,8 @@ const createMessage = (id, type) => {
 
 const sendJSON = (payload, status, res) => {
   payload.rows[0] ?
-  res.status(status).json(payload.rows[0]) :
-  res.sendStatus(404);
+    res.status(status).json(payload.rows[0]) :
+    res.sendStatus(404);
 };
 
 const sendMessage = (res, message, id, type) => {
