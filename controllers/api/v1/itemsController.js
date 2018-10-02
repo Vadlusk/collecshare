@@ -1,17 +1,21 @@
+const imgur   = require('../../../services/imgur');
 const Item    = require('../../../models/Item');
 const helpers = require('../../helpers');
 
 const create = (req, res, next) => {
-  helpers.imageCheck(req)
-  .then(() => {
-    if (!req.body.collection_id || !req.body.title) {
-      let message = { 'error': 'collection id and title required' };
-      res.status(400).json(message);
-    } else {
-      Item.create(req.body)
-      .then(item => helpers.sendJSON(item, 201, res));
-    });
+  if (req.file) {
+    imgur.post(req).then(json => {
+      req.body.image = json.data.link;
+      req.body.image_delete = json.data.deletehash;
+    })
   }
+  if (!req.body.collection_id || !req.body.title) {
+    let message = { 'error': 'collection id and title required' };
+    res.status(400).json(message);
+  } else {
+    Item.create(req.body)
+    .then(item => helpers.sendJSON(item, 201, res));
+    }
 };
 
 const index = (req, res, next) => {
@@ -25,8 +29,13 @@ const show = (req, res, next) => {
 
 const update = (req, res, next) => {
   if (req.body.value) req.body.value *= 100;
-  helpers.imageCheck(req)
-    .then(() => Item.update(req.body, req.params.id))
+  if (req.file) {
+    imgur.post(req).then(json => {
+      req.body.image = json.data.link;
+      req.body.image_delete = json.data.deletehash;
+    })
+  }
+  Item.update(req.body, req.params.id)
     .then(item => helpers.sendJSON(item, 200, res));
 };
 

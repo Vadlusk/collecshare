@@ -23,14 +23,22 @@ const show = (req, res, next) => {
 };
 
 const update = (req, res, next) => {
-  helpers.avatarCheck(req)
-  .then(() => User.update(req.body, req.params.uid))
-  .then(user => helpers.sendJSON(user, 200, res));
+  req.file ? imgur.post(req)
+    .then(json => {
+        req.body.avatar        = json.data.link;
+        req.body.avatar_delete = json.data.deletehash;
+      })
+      .then(() => userUpdate(req, res)) : userUpdate(req, res);
 };
 
 const destroy = (req, res, next) => {
   User.destroy(req.params.uid)
     .then(msg => helpers.sendMessage(res, msg, req.params.uid, 'user'));
+};
+
+const userUpdate = (req, res) => {
+  User.update(req.body, req.params.uid)
+   .then(user => helpers.sendJSON(user, 200, res));
 };
 
 module.exports = { create, index, show, update, destroy };
