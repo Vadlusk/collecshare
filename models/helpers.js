@@ -17,6 +17,7 @@ const findWithChildren = (id, parent, child) => {
 };
 
 const update = (info, id, table) => {
+  console.log('query', updateQuery(info, table));
   return database.raw(updateQuery(info, table), [id]);
 };
 

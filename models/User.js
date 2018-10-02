@@ -15,6 +15,7 @@ class User {
   }
 
   static update(info, uid) {
+    console.log('model', info);
     return helpers.update(info, uid, 'users');
   }
 
