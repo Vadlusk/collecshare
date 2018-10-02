@@ -1,8 +1,15 @@
 const Collection = require('../../../models/Collection');
-const helpers = require('../../helpers');
+const imgur      = require('../../../services/imgur');
+const helpers    = require('../../helpers');
 
 const create = (req, res, next) => {
-  req.file ? req.body.image = req.file.path : null;
+  // req.file ? req.body.image = req.file.path : null;
+  if (req.file) {
+    imgur.post(req).then(json => {
+      req.body.image = json.data.link;
+      req.body.image_delete = json.data.deletehash;
+    })
+  }
   if (!req.body.uid || !req.body.category || !req.body.title) {
     let message = { 'error': 'uid, category, title required' };
     res.status(400).json(message);
