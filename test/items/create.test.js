@@ -23,7 +23,7 @@ describe('POST /api/v1/items', () => {
         res.body.value.should.equal(0);
         res.body.should.have.property('description');
         res.body.should.have.property('image');
-        res.body.image.should.equal('backgrounds/book.jpeg');
+        res.body.image.should.equal('https://collecshare.herokuapp.com/backgrounds/book.jpeg');
         done();
       });
     });
