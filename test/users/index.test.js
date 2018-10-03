@@ -14,7 +14,7 @@ describe('GET /api/v1/users', () => {
         res.body[0].should.have.property('username');
         res.body[0].username.should.equal('Jill');
         res.body[0].should.have.property('avatar');
-        res.body[0].avatar.should.equal('backgrounds/avatar.png');
+        res.body[0].avatar.should.equal('https://collecshare.herokuapp.com/backgrounds/avatar.png');
         res.body[0].should.have.property('location');
         res.body[0].location.should.equal('Denver, CO');
         res.body[0].should.have.property('bio');

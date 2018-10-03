@@ -19,7 +19,7 @@ describe('GET /api/v1/items/:id', () => {
         res.body.should.have.property('description');
         res.body.description.should.equal('I have this.')
         res.body.should.have.property('image');
-        res.body.image.should.equal('backgrounds/book.jpeg')
+        res.body.image.should.equal('https://collecshare.herokuapp.com/backgrounds/book.jpeg')
         done();
       });
   });

@@ -23,11 +23,14 @@ const show = (req, res, next) => {
 };
 
 const update = (req, res, next) => {
-  req.file ? imgur.post(req).then(json => {
-    req.body.avatar        = json.data.link;
-    req.body.avatar_delete = json.data.deletehash;
-  })
-  .then(() => userUpdate(req, res)) : userUpdate(req, res);
+  req.file ? User.find(req.params.uid)
+    .then(user => helpers.avatarCleanup(user))
+    .then(() => imgur.post(req))
+    .then(json => {
+      req.body.avatar        = json.data.link;
+      req.body.avatar_delete = json.data.deletehash;
+    })
+    .then(() => userUpdate(req, res)) : userUpdate(req, res);
 };
 
 const destroy = (req, res, next) => {

@@ -12,4 +12,13 @@ const post = req => {
     .then(info => info.json())
 };
 
-module.exports = { post };
+const imageDelete = id => {
+  return fetch(`https://api.imgur.com/3/image/${id}`, {
+    method: 'DELETE',
+    headers: { 'Authorization': `Client-ID ${process.env.IMGUR_CLIENT_ID}` }
+  })
+    .then(info => info.json())
+    .then(json => console.log(json))
+};
+
+module.exports = { post, imageDelete };

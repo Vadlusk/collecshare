@@ -21,11 +21,14 @@ const show = (req, res, next) => {
 
 const update = (req, res, next) => {
   if (req.body.value) req.body.value *= 100;
-  req.file ? imgur.post(req).then(json => {
-    req.body.image = json.data.link;
-    req.body.image_delete = json.data.deletehash;
-  })
-  .then(() => itemUpdate(req, res)) : itemUpdate(req, res);
+  req.file ? Item.find(req.params.id)
+    .then(item => helpers.imageCleanup(item))
+    .then(() => imgur.post(req))
+    .then(json => {
+      req.body.image = json.data.link;
+      req.body.image_delete = json.data.deletehash;
+    })
+    .then(() => itemUpdate(req, res)) : itemUpdate(req, res);
 };
 
 const destroy = (req, res, next) => {
