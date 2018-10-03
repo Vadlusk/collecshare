@@ -46,7 +46,7 @@ describe('PUT /api/v1/users/:uid', () => {
   //         done();
   //       });
   //   });
-  // });
+  });
   it('should 404 if uid does not exist', done => {
     config.chai.request(config.app)
       .put('/api/v1/users/999999')
