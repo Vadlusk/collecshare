@@ -6,7 +6,7 @@ exports.up = function(knex, Promise) {
     title TEXT NOT NULL,
     value REAL DEFAULT 0,
     description TEXT,
-    image TEXT DEFAULT 'backgrounds/book.jpeg',
+    image TEXT DEFAULT 'https://collecshare.herokuapp.com/backgrounds/book.jpeg',
     image_delete TEXT,
     details JSONB,
     public BOOLEAN DEFAULT TRUE

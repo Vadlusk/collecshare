@@ -6,7 +6,7 @@ exports.up = function(knex, Promise) {
     category TEXT NOT NULL,
     title TEXT NOT NULL,
     description TEXT,
-    image TEXT DEFAULT 'backgrounds/books.jpg',
+    image TEXT DEFAULT 'https://collecshare.herokuapp.com/backgrounds/books.jpg',
     image_delete TEXT
   )`);
 };
