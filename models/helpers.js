@@ -1,6 +1,8 @@
 const database = require('../db/config');
 
 const create = (info, table) => {
+  console.log(createQuery(info, table))
+  console.log([...Object.values(info)])
   return database.raw(createQuery(info, table), [...Object.values(info)]);
 };
 
