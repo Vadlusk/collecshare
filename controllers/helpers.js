@@ -17,4 +17,16 @@ const sendMessage = (res, message, id, type) => {
     res.sendStatus(404);
 };
 
-module.exports = { sendJSON, sendMessage };
+const avatarCleanup = user => {
+  if (user.rows[0].avatar_delete) {
+    imgur.imageDelete(user.rows[0].avatar_delete);
+  }
+};
+
+const imageCleanup = obj => {
+  if (obj.rows[0].image_delete) {
+    imgur.imageDelete(obj.rows[0].image_delete);
+  }
+};
+
+module.exports = { sendJSON, sendMessage, avatarCleanup, imageCleanup };
